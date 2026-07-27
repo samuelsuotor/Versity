@@ -1,1 +1,1 @@
-console.log("Versity Loaded Successfully");
+console.log("Versity Sprint 1.2 Loaded");

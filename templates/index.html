@@ -1,33 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+{% extends "layouts/base.html" %}
 
-<meta charset="UTF-8">
+{% block title %}
+Versity
+{% endblock %}
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+{% block content %}
 
-<title>Versity</title>
+<section class="hero-placeholder">
 
-<link rel="stylesheet"
-href="{{ url_for('static', filename='css/variables.css') }}">
+<h1>Versity</h1>
 
-<link rel="stylesheet"
-href="{{ url_for('static', filename='css/style.css') }}">
+<p>
+Building the future of academic excellence.
+</p>
 
-<link rel="stylesheet"
-href="{{ url_for('static', filename='css/animations.css') }}">
+</section>
 
-</head>
-
-<body>
-
-<h1>Welcome to Versity</h1>
-
-<script
-src="{{ url_for('static', filename='js/app.js') }}">
-</script>
-
-</body>
-
-</html>
+{% endblock %}
