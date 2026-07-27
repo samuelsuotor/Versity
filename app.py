@@ -57,9 +57,50 @@ def home():
         }
 
     ]
+
+    featured_projects = [
+
+    {
+        "id":1,
+        "title":"Fuel Price Prediction System",
+        "department":"Computer Science",
+        "technology":"Python • Flask • MySQL",
+        "price":"₦15,000",
+        "image":"project-placeholder.jpg"
+    },
+
+    {
+        "id":2,
+        "title":"Complaint & Maintenance Tracking System",
+        "department":"Information Technology",
+        "technology":"PHP • MySQL",
+        "price":"₦18,000",
+        "image":"project-placeholder.jpg"
+    },
+
+    {
+        "id":3,
+        "title":"Digital Queue Management System",
+        "department":"Software Engineering",
+        "technology":"Python • Flask",
+        "price":"₦20,000",
+        "image":"project-placeholder.jpg"
+    },
+
+    {
+        "id":4,
+        "title":"Student Marketplace Platform",
+        "department":"Computer Science",
+        "technology":"Python • Flask",
+        "price":"₦22,000",
+        "image":"project-placeholder.jpg"
+    }
+    ]
+    
     return render_template(
         "index.html",
-        departments=departments
+        departments=departments,
+        featured_projects=featured_projects
     )
 
 if __name__ == "__main__":

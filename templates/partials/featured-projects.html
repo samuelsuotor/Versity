@@ -1,0 +1,81 @@
+<section class="featured-projects">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>
+
+Featured Projects
+
+</h2>
+
+<p>
+
+Professionally developed academic systems ready for purchase.
+
+</p>
+
+</div>
+
+<div class="projects-grid">
+
+{% for project in featured_projects %}
+
+<div class="project-card">
+
+<div class="project-image">
+
+<img
+src="{{ url_for('static', filename='images/' + project.image) }}"
+alt="{{ project.title }}">
+
+</div>
+
+<div class="project-content">
+
+<span class="department-badge">
+
+{{ project.department }}
+
+</span>
+
+<h3>
+
+{{ project.title }}
+
+</h3>
+
+<p>
+
+{{ project.technology }}
+
+</p>
+
+<div class="project-footer">
+
+<strong>
+
+{{ project.price }}
+
+</strong>
+
+<a href="#">
+
+Preview
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</section>
