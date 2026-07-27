@@ -1,0 +1,64 @@
+<section class="departments">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>
+
+Browse by Department
+
+</h2>
+
+<p>
+
+Explore projects and software tailored to your academic discipline.
+
+</p>
+
+</div>
+
+<div class="department-grid">
+
+{% for department in departments %}
+
+<div
+class="department-card"
+
+data-department="{{ department.name }}">
+
+<div class="department-icon">
+
+{{ department.icon }}
+
+</div>
+
+<h3>
+
+{{ department.name }}
+
+</h3>
+
+<p>
+
+{{ department.projects }}
+
+Projects Available
+
+</p>
+
+<a href="#">
+
+Explore →
+
+</a>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</section>
