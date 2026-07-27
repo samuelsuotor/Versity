@@ -1,0 +1,17 @@
+.fade{
+
+opacity:0;
+
+transform:translateY(20px);
+
+transition:.5s;
+
+}
+
+.fade.show{
+
+opacity:1;
+
+transform:none;
+
+}
