@@ -1,0 +1,93 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}
+{{ project.title }}
+{% endblock %}
+
+{% block content %}
+
+<section class="project-details">
+
+<div class="container details-grid">
+
+<div class="project-gallery">
+
+<img
+src="{{ url_for('static', filename='images/' + project.image) }}"
+alt="{{ project.title }}">
+
+</div>
+
+<div class="project-information">
+
+<span class="department-badge">
+
+{{ project.department }}
+
+</span>
+
+<h1>
+
+{{ project.title }}
+
+</h1>
+
+<p>
+
+{{ project.description }}
+
+</p>
+
+<h3>
+
+Technology Stack
+
+</h3>
+
+<p>
+
+{{ project.technology }}
+
+</p>
+
+<h3>
+
+Included
+
+</h3>
+
+<ul>
+
+{% for feature in project.features %}
+
+<li>{{ feature }}</li>
+
+{% endfor %}
+
+</ul>
+
+<div class="purchase-box">
+
+<h2>
+
+{{ project.price }}
+
+</h2>
+
+<a href="https://wa.me/{{ whatsapp_number }}?text=Hello,%20I'm%20interested%20in%20purchasing%20{{ project.title }}"
+target="_blank"
+class="primary-btn">
+
+Purchase via WhatsApp
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+{% endblock %}

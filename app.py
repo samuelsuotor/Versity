@@ -1,8 +1,13 @@
 from flask import Flask, render_template
 from config import Config
+from flask import abort
+from data import featured_projects
+
+WHATSAPP_NUMBER = "2348143467785"
 
 app = Flask(__name__)
 app.config.from_object(Config)
+
 
 @app.route("/")
 def home():
@@ -58,49 +63,35 @@ def home():
 
     ]
 
-    featured_projects = [
-
-    {
-        "id":1,
-        "title":"Fuel Price Prediction System",
-        "department":"Computer Science",
-        "technology":"Python • Flask • MySQL",
-        "price":"₦15,000",
-        "image":"project-placeholder.jpg"
-    },
-
-    {
-        "id":2,
-        "title":"Complaint & Maintenance Tracking System",
-        "department":"Information Technology",
-        "technology":"PHP • MySQL",
-        "price":"₦18,000",
-        "image":"project-placeholder.jpg"
-    },
-
-    {
-        "id":3,
-        "title":"Digital Queue Management System",
-        "department":"Software Engineering",
-        "technology":"Python • Flask",
-        "price":"₦20,000",
-        "image":"project-placeholder.jpg"
-    },
-
-    {
-        "id":4,
-        "title":"Student Marketplace Platform",
-        "department":"Computer Science",
-        "technology":"Python • Flask",
-        "price":"₦22,000",
-        "image":"project-placeholder.jpg"
-    }
-    ]
     
     return render_template(
+
         "index.html",
+
         departments=departments,
+
         featured_projects=featured_projects
+
+    )
+
+@app.route("/projects/<slug>")
+def project_details(slug):
+
+    project = next(
+
+        (p for p in featured_projects if p["slug"] == slug),
+
+        None
+
+    )
+
+    if project is None:
+        abort(404)
+
+    return render_template(
+        "project-details.html",
+        project=project,
+        whatsapp_number=WHATSAPP_NUMBER
     )
 
 if __name__ == "__main__":

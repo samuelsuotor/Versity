@@ -1,47 +1,46 @@
-document.addEventListener("DOMContentLoaded",()=>{
+document.addEventListener("DOMContentLoaded", () => {
 
-const hero=document.querySelector(".hero");
+    const hero = document.querySelector(".hero");
+    const heroSearch = document.querySelector(".hero-search input");
+    const departmentCards = document.querySelectorAll(".department-card");
 
-const departmentCards = document.querySelectorAll(".department-card");
+    // Department card click
+    if (departmentCards.length > 0 && heroSearch) {
 
-const heroSearch = document.querySelector(".hero-search input");
+        departmentCards.forEach(card => {
 
-departmentCards.forEach(card=>{
+            card.addEventListener("click", () => {
 
-card.addEventListener("click",()=>{
+                const department = card.dataset.department;
 
-const department = card.dataset.department;
+                heroSearch.value = department;
+                heroSearch.focus();
 
-heroSearch.value = department;
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
 
-heroSearch.focus();
+            });
 
-window.scrollTo({
+        });
 
-top:0,
+    }
 
-behavior:"smooth"
+    // Hero animation
+    if (hero) {
+
+        hero.style.opacity = "0";
+        hero.style.transform = "translateY(30px)";
+
+        setTimeout(() => {
+
+            hero.style.transition = "all .8s ease";
+            hero.style.opacity = "1";
+            hero.style.transform = "translateY(0)";
+
+        }, 150);
+
+    }
 
 });
-
-});
-
-});
-
-hero.style.opacity="0";
-
-hero.style.transform="translateY(30px)";
-
-setTimeout(()=>{
-
-hero.style.transition="all .8s ease";
-
-hero.style.opacity="1";
-
-hero.style.transform="translateY(0)";
-
-},150);
-
-}
-)
-;

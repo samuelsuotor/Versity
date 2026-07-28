@@ -715,7 +715,79 @@ text-decoration:none;
 
 }
 
+.project-details{
 
+padding:100px 0;
+
+}
+
+.details-grid{
+
+display:grid;
+
+grid-template-columns:1.1fr .9fr;
+
+gap:60px;
+
+align-items:start;
+
+}
+
+.project-gallery img{
+
+width:100%;
+
+border-radius:24px;
+
+box-shadow:var(--shadow);
+
+}
+
+.project-information h1{
+
+font-family:'Manrope';
+
+font-size:48px;
+
+margin:20px 0;
+
+}
+
+.project-information p{
+
+line-height:1.8;
+
+color:var(--muted);
+
+}
+
+.project-information ul{
+
+margin:24px 0;
+
+padding-left:20px;
+
+}
+
+.project-information li{
+
+margin-bottom:12px;
+
+}
+
+.purchase-box{
+
+margin-top:40px;
+
+padding:30px;
+
+border-radius:24px;
+
+background:#f8fafc;
+
+border:1px solid var(--border);
+
+}
 
 
 
@@ -828,6 +900,22 @@ grid-template-columns:1fr;
 .projects-grid{
 
 grid-template-columns:1fr;
+
+}
+
+}
+
+@media(max-width:900px){
+
+.details-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.project-information h1{
+
+font-size:36px;
 
 }
 
