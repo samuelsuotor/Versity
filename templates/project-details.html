@@ -6,83 +6,201 @@
 
 {% block content %}
 
+<section class="breadcrumb-section">
+
+    <div class="container">
+
+        <nav class="breadcrumb">
+
+            <a href="{{ url_for('home') }}">Home</a>
+
+            <span>/</span>
+
+            <a href="#">{{ project.department }}</a>
+
+            <span>/</span>
+
+            <span class="current">{{ project.title }}</span>
+
+        </nav>
+
+    </div>
+
+</section>
+
 <section class="project-details">
 
 <div class="container details-grid">
 
 <div class="project-gallery">
 
-<img
-src="{{ url_for('static', filename='images/' + project.image) }}"
-alt="{{ project.title }}">
+    <img
+        class="main-preview"
+        id="mainPreview"
+        src="{{ url_for('static', filename='images/' + project.images[0]) }}"
+        alt="{{ project.title }}">
+
+    <div class="thumbnail-row">
+
+        {% for image in project.images %}
+
+        <img
+
+            class="thumbnail {% if loop.first %}active{% endif %}"
+
+            src="{{ url_for('static', filename='images/' + image) }}"
+
+            alt="{{ project.title }}">
+
+        {% endfor %}
+
+    </div>
 
 </div>
 
 <div class="project-information">
 
-<span class="department-badge">
+        <span class="department-badge">
 
-{{ project.department }}
+        {{ project.department }}
 
-</span>
+        </span>
 
-<h1>
+        <h1>
 
-{{ project.title }}
+        {{ project.title }}
 
-</h1>
+        </h1>
 
-<p>
+    <p>
 
-{{ project.description }}
+    {{ project.description }}
 
-</p>
+    </p>
 
-<h3>
+        <h3>Technology Stack</h3>
 
-Technology Stack
+        <div class="technology-badges">
 
-</h3>
+            {% for technology in project.technology %}
 
-<p>
+                <span class="technology-badge">
 
-{{ project.technology }}
+                    {{ technology }}
 
-</p>
+                </span>
 
-<h3>
+            {% endfor %}
 
-Included
+        </div>
 
-</h3>
+        <h3>
 
-<ul>
+        What's Included
 
-{% for feature in project.features %}
+        </h3>
 
-<li>{{ feature }}</li>
+            <ul>
 
-{% endfor %}
+                {% for feature in project.features %}
 
-</ul>
+                <li>{{ feature }}</li>
 
-<div class="purchase-box">
+                {% endfor %}
 
-<h2>
+            </ul>
 
-{{ project.price }}
+        <div class="project-information-card">
 
-</h2>
+            <h3>Project Information</h3>
 
-<a href="https://wa.me/{{ whatsapp_number }}?text=Hello,%20I'm%20interested%20in%20purchasing%20{{ project.title }}"
-target="_blank"
-class="primary-btn">
+            <div class="information-row">
 
-Purchase via WhatsApp
+                <span class="information-label">Department</span>
 
-</a>
+                <span class="information-value">
 
-</div>
+                    {{ project.department }}
+
+                </span>
+
+            </div>
+
+            <div class="information-row">
+
+                <span class="information-label">Category</span>
+
+                <span class="information-value">
+
+                    {{ project.category }}
+
+                </span>
+
+            </div>
+
+            <div class="information-row">
+
+                <span class="information-label">Documentation</span>
+
+                <span class="information-value">
+
+                    {{ project.documentation }}
+
+                </span>
+
+            </div>
+
+            <div class="information-row">
+
+                <span class="information-label">Source Code</span>
+
+                <span class="information-value">
+
+                    {{ project.source_code }}
+
+                </span>
+
+            </div>
+
+            <div class="information-row">
+
+                <span class="information-label">Status</span>
+
+                <span class="information-value">
+
+                    {{ project.status }}
+
+                </span>
+
+            </div>
+
+        </div>
+
+    <div class="purchase-box">
+
+        <h3>Complete Package</h3>
+
+        <ul class="purchase-list">
+
+            <li>✔ Chapter 1–5 Documentation</li>
+            <li>✔ Complete Source Code</li>
+            <li>✔ Database Included</li>
+            <li>✔ Installation Guide</li>
+
+        </ul>
+
+        <h2>{{ project.price }}</h2>
+
+        <a
+            href="https://wa.me/{{ whatsapp_number }}?text=Hello,%20I'm%20interested%20in%20purchasing%20{{ project.title }}"
+            target="_blank"
+            class="primary-btn">
+
+            Get Full Project
+
+        </a>
+
+    </div>
 
 </div>
 

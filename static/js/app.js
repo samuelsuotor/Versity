@@ -43,4 +43,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
+
+    // ==========================================
+    //              Project Gallery
+    // ==========================================
+
+    const mainPreview = document.getElementById("mainPreview");
+    const thumbnails = document.querySelectorAll(".thumbnail");
+
+    if (mainPreview && thumbnails.length > 0) {
+
+        thumbnails.forEach(thumbnail => {
+
+            thumbnail.addEventListener("click", () => {
+
+                mainPreview.src = thumbnail.src;
+
+                thumbnails.forEach(img => {
+
+                img.classList.remove("active");
+
+            });
+
+            thumbnail.classList.add("active");
+
+            });
+
+        });
+
+    }
 });
