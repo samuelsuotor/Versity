@@ -30,59 +30,49 @@
 
 <section class="project-details">
 
-<div class="container details-grid">
+    <div class="container details-grid">
 
-<div class="project-gallery">
+        <div class="project-gallery">
 
-    <img
-        class="main-preview"
-        id="mainPreview"
-        src="{{ url_for('static', filename='images/' + project.images[0]) }}"
-        alt="{{ project.title }}">
+            <img class="main-preview" id="mainPreview"
+                src="{{ url_for('static', filename='images/' + project.software_images[0]) }}"
+                alt="{{ project.title }}">
 
-    <div class="thumbnail-row">
+            <div class="thumbnail-row">
 
-        {% for image in project.images %}
+                {% for image in project.software_images %}
 
-        <img
+                <img class="thumbnail {% if loop.first %}active{% endif %}"
+                    src="{{ url_for('static', filename='images/' + image) }}" alt="{{ project.title }}">
 
-            class="thumbnail {% if loop.first %}active{% endif %}"
+                {% endfor %}
 
-            src="{{ url_for('static', filename='images/' + image) }}"
+            </div>
+        </div>
 
-            alt="{{ project.title }}">
+        <div class="project-information">
 
-        {% endfor %}
+            <span class="department-badge">
 
-    </div>
+                {{ project.department }}
 
-</div>
+            </span>
 
-<div class="project-information">
+            <h1>
 
-        <span class="department-badge">
+                {{ project.title }}
 
-        {{ project.department }}
+            </h1>
 
-        </span>
+            <p>
 
-        <h1>
+                {{ project.description }}
 
-        {{ project.title }}
+            </p>
 
-        </h1>
+            <div class="technology-badges">
 
-    <p>
-
-    {{ project.description }}
-
-    </p>
-
-        <h3>Technology Stack</h3>
-
-        <div class="technology-badges">
-
-            {% for technology in project.technology %}
+                {% for technology in project.technology %}
 
                 <span class="technology-badge">
 
@@ -90,121 +80,104 @@
 
                 </span>
 
-            {% endfor %}
+                {% endfor %}
 
-        </div>
+            </div>
 
-        <h3>
+            <h3 class="included-heading">
 
-        What's Included
+                What's Included
 
-        </h3>
+            </h3>
 
-            <ul>
+            <ul class="purchase-list">
 
                 {% for feature in project.features %}
 
-                <li>{{ feature }}</li>
+                <li>✓ {{ feature }}</li>
 
                 {% endfor %}
 
             </ul>
 
-        <div class="project-information-card">
+            <section class="report-preview-section">
 
-            <h3>Project Information</h3>
+                <div class="report-preview-card">
 
-            <div class="information-row">
+                    <div class="report-preview-icon">
 
-                <span class="information-label">Department</span>
+                        📄
 
-                <span class="information-value">
+                    </div>
 
-                    {{ project.department }}
+                    <div class="report-preview-content">
 
-                </span>
+                        <h3>
 
-            </div>
+                            Project Report Preview
 
-            <div class="information-row">
+                        </h3>
 
-                <span class="information-label">Category</span>
+                        <p>
 
-                <span class="information-value">
+                            Preview selected pages from the complete Microsoft Word project report before purchasing.
 
-                    {{ project.category }}
+                        </p>
 
-                </span>
+                        <ul class="report-preview-list">
 
-            </div>
+                            <li>Cover Page</li>
 
-            <div class="information-row">
+                            <li>Table of Contents</li>
 
-                <span class="information-label">Documentation</span>
+                            <li>Chapter One Sample</li>
 
-                <span class="information-value">
+                        </ul>
 
-                    {{ project.documentation }}
+                        <button class="primary-btn preview-report-btn" type="button">
 
-                </span>
+                            Preview Report
 
-            </div>
+                        </button>
 
-            <div class="information-row">
+                    </div>
 
-                <span class="information-label">Source Code</span>
+                </div>
 
-                <span class="information-value">
+            </section>
 
-                    {{ project.source_code }}
+            <div class="purchase-box">
 
-                </span>
+                <h3>
 
-            </div>
+                    Ready to Purchase?
 
-            <div class="information-row">
+                </h3>
 
-                <span class="information-label">Status</span>
+                <h2>
 
-                <span class="information-value">
+                    {{ project.price }}
 
-                    {{ project.status }}
+                </h2>
 
-                </span>
+                <p>
+
+                    Purchase securely through WhatsApp.
+
+                </p>
+
+                <a href="https://wa.me/{{ whatsapp_number }}?text=Hello,%20I'm%20interested%20in%20purchasing%20{{ project.title }}"
+                    target="_blank" class="primary-btn">
+
+                    Purchase Project
+
+                </a>
 
             </div>
 
         </div>
 
-    <div class="purchase-box">
-
-        <h3>Complete Package</h3>
-
-        <ul class="purchase-list">
-
-            <li>✔ Chapter 1–5 Documentation</li>
-            <li>✔ Complete Source Code</li>
-            <li>✔ Database Included</li>
-            <li>✔ Installation Guide</li>
-
-        </ul>
-
-        <h2>{{ project.price }}</h2>
-
-        <a
-            href="https://wa.me/{{ whatsapp_number }}?text=Hello,%20I'm%20interested%20in%20purchasing%20{{ project.title }}"
-            target="_blank"
-            class="primary-btn">
-
-            Get Full Project
-
-        </a>
-
     </div>
-
-</div>
-
-</div>
 
 </section>
 
