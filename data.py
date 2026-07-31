@@ -101,7 +101,7 @@ featured_projects = [
         ],
         "description": "A modern solution for managing queues in various settings.",
         "features": [
-            "Chapter 1–5 Microsoft Word Documentation"
+            "Chapter 1–5 Microsoft Word Documentation",
             "Real-time queue management",
             "User-friendly interface",
             "Analytics and reporting"
@@ -136,7 +136,7 @@ featured_projects = [
         ],
         "description": "A platform for students to buy and sell used textbooks and supplies.",
         "features": [
-            "Chapter 1–5 Microsoft Word Documentation"
+            "Chapter 1–5 Microsoft Word Documentation",
             "User-friendly interface",
             "Secure payment processing",
             "Detailed product listings"

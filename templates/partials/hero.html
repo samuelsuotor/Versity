@@ -32,23 +32,18 @@
 
         </p>
 
-        <div class="hero-search">
+        <form class="hero-search" method="GET" action="{{ url_for('search_projects') }}">
 
-            <input
+            <input type="text" name="search" placeholder="Search by project title, department, technology..."
+                value="{{ search_query }}">
 
-                type="text"
-
-                placeholder="Search by project title, department, technology..."
-
-            >
-
-            <button>
+            <button type="submit">
 
                 Search
 
             </button>
 
-        </div>
+        </form>
 
         <div class="hero-buttons">
 

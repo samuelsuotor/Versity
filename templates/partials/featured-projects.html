@@ -1,81 +1,66 @@
 <section class="featured-projects">
 
-<div class="container">
+    <div class="container">
 
-<div class="section-title">
+        <div class="section-title">
 
-<h2>
+            <h2>
 
-Featured Projects
+                Featured Projects
 
-</h2>
+            </h2>
 
-<p>
+            <p>
 
-Professionally developed academic systems ready for purchase.
+                Professionally developed academic systems ready for purchase.
 
-</p>
+            </p>
 
-</div>
+        </div>
 
-<div class="projects-grid">
+        <div class="projects-grid">
 
-{% for project in featured_projects %}
+            {% if featured_projects %}
 
-<div class="project-card">
+            {% for project in featured_projects %}
 
-<div class="project-image">
+            {% include "partials/project-card.html" %}
 
-<img
-src="{{ url_for('static', filename='images/' + project.software_images[0]) }}"
-alt="{{ project.title }}">
+            {% endfor %}
 
-</div>
+            {% else %}
 
-<div class="project-content">
+            <div class="empty-search-state">
 
-<span class="department-badge">
+                <div class="empty-search-icon">
 
-{{ project.department }}
+                    🔍
 
-</span>
+                </div>
 
-<h3>
+                <p>
 
-{{ project.title }}
+                    We couldn't find a project matching your search.
 
-</h3>
+                    Tell us your topic and we'll prepare a complete final-year project with documentation, source code,
+                    database, and
+                    installation guide.
 
-<p>
+                </p>
 
-{{ project.technology }}
+                <a href="https://wa.me/{{ whatsapp_number }}?text=Hello,%20I'm%20looking%20for%20a%20project%20on%20'{{ search_query }}'.%20I%20couldn't%20find%20it%20on%20Versity.%20I'd%20like%20to%20request%20a%20custom%20project."
+                    class="primary-btn" target="_blank">
 
-</p>
+                    Request Custom Project
 
-<div class="project-footer">
+                </a>
 
-<strong>
+            </div>
 
-{{ project.price }}
+            {% endif %}
 
-</strong>
+        </div>
 
-<a href="{{ url_for('project_details', slug=project.slug) }}">
-
-Preview
-
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-{% endfor %}
-
-</div>
-
-</div>
+    </div>
 
 </section>

@@ -1,0 +1,48 @@
+{% if featured_projects %}
+
+<div class="projects-grid">
+
+    {% for project in featured_projects %}
+
+    {% include "partials/project-card.html" %}
+
+    {% endfor %}
+
+</div>
+
+{% else %}
+
+<div class="empty-search-state">
+
+    <div class="empty-search-icon">
+
+        🔍
+
+    </div>
+
+    <h2>
+
+        We don't have a project on "{{ search_query }}" yet.
+
+    </h2>
+
+    <p>
+
+        Don't worry—we can build it for you.
+
+        Tell us your exact topic and we'll prepare the complete thesis with documentation, source code, database,
+        and
+        installation guide.
+
+    </p>
+
+    <a href="https://wa.me/{{ whatsapp_number }}?text=Hello,%0A%0AI%20searched%20for%20'{{ search_query }}'%20on%20Versity%20but%20couldn't%20find%20a%20matching%20project.%0A%0AI'd%20like%20to%20request%20a%20custom%20final-year%20project.%0A%0APlease%20let%20me%20know%20the%20next%20steps."
+        class="primary-btn" target="_blank">
+
+        Request Custom Project
+
+    </a>
+
+</div>
+
+{% endif %}

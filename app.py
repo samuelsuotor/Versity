@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from config import Config
 from flask import abort
 from data import featured_projects
@@ -63,14 +63,64 @@ def home():
 
     ]
 
-    
     return render_template(
 
         "index.html",
 
         departments=departments,
 
-        featured_projects=featured_projects
+        featured_projects=featured_projects,
+
+        whatsapp_number=WHATSAPP_NUMBER
+
+    )
+
+@app.route("/search")
+def search_projects():
+
+    search_query = request.args.get("search", "").strip()
+
+    filtered_projects = featured_projects
+
+    if search_query:
+
+        filtered_projects = [
+
+            project
+
+            for project in featured_projects
+
+            if (
+
+                search_query.lower() in project["title"].lower()
+
+                or search_query.lower() in project["department"].lower()
+
+                or search_query.lower() in project["category"].lower()
+
+                or any(
+
+                    search_query.lower() in technology.lower()
+
+                    for technology in project["technology"]
+
+                )
+
+            )
+
+        ]
+
+    return render_template(
+
+        "project-results.html",
+
+        featured_projects=filtered_projects,
+
+        search_query=search_query,
+
+        page_title="Search Results",
+
+        whatsapp_number=WHATSAPP_NUMBER
 
     )
 

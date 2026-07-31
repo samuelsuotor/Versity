@@ -1,0 +1,47 @@
+<div class="project-card">
+
+    <div class="project-image">
+
+        <img src="{{ url_for('static', filename='images/' + project.software_images[0]) }}" alt="{{ project.title }}">
+
+    </div>
+
+    <div class="project-content">
+
+        <span class="department-badge">
+
+            {{ project.department }}
+
+        </span>
+
+        <h3>
+
+            {{ project.title }}
+
+        </h3>
+
+        <p>
+
+            {{ project.technology | join(", ") }}
+
+        </p>
+
+        <div class="project-footer">
+
+            <strong>
+
+                {{ project.price }}
+
+            </strong>
+
+            <a href="{{ url_for('project_details', slug=project.slug) }}">
+
+                Preview
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>

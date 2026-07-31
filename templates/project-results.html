@@ -1,0 +1,76 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}
+Search Results
+{% endblock %}
+
+{% block content %}
+
+<section class="search-results-page">
+
+    <div class="container">
+
+        <div class="search-header">
+
+            <h1>
+
+                {{ page_title }}
+
+            </h1>
+
+            {% if search_query %}
+
+            <p>
+
+                <strong>{{ featured_projects|length }}</strong>
+
+                project{% if featured_projects|length != 1 %}s{% endif %}
+
+                found for
+
+                <strong>"{{ search_query }}"</strong>
+
+            </p>
+
+            {% elif page_description %}
+
+            <p>
+
+                {{ page_description }}
+
+            </p>
+
+            {% endif %}
+
+        </div>
+
+        <form class="hero-search" method="GET" action="{{ url_for('search_projects') }}">
+
+            <input type="text" name="search" value="{{ search_query }}"
+                placeholder="Search by project title, department, technology...">
+
+            <button type="submit">
+
+                Search
+
+            </button>
+
+        </form>
+
+        <div class="search-navigation">
+
+            <a href="{{ url_for('home') }}">
+
+                ← Back to Home
+
+            </a>
+
+        </div>
+
+        {% include "partials/search-projects.html" %}
+
+    </div>
+
+</section>
+
+{% endblock %}
