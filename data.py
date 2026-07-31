@@ -5,6 +5,7 @@ featured_projects = [
         "slug": "fuel-price-prediction-system",
         "title": "Fuel Price Prediction System",
         "department": "Computer Science",
+        "category": "Machine Learning",
         "technology": [
             "Python",
             "Flask",
@@ -12,13 +13,10 @@ featured_projects = [
             "CSS",
             "JavaScript"
         ],
-        "category": "Machine Learning",
-        "documentation": "Included",
-        "source_code": "Included",
-        "status": "Completed",
-        "price": "₦15,000",
+        "price": 15000,
+        "status": "completed",
         "software_images": [
-            "fuel-price-1.jpg",
+            "fuel-price-1.png",
             "fuel-price-2.jpg",
             "fuel-price-3.jpg",
             "fuel-price-4.jpg"
@@ -28,13 +26,31 @@ featured_projects = [
             "fuel-report-contents.jpg",
             "fuel-report-chapter1-1.jpg",
             "fuel-report-chapter1-2.jpg"
-        ],
+            ],
         "description": "An intelligent system that predicts future fuel prices using historical data and machine learning techniques.",
+        "includes": [
+            {
+                "label": "Chapter 1–5 Microsoft Word Documentation",
+                "available": True
+            },
+            {
+                "label": "Complete Source Code",
+                "available": True
+            },
+            {
+                "label": "Database Files",
+                "available": True
+            },
+            {
+                "label": "Installation Guide",
+                "available": True
+            }
+        ],
         "features": [
-            "Chapter 1–5 Microsoft Word Documentation",
-            "Complete Source Code",
-            "Database Files",
-            "Installation Guide"
+            "Accurate Fuel Price Predictions",
+            "User-Friendly Interface",
+            "Real-Time Data Analysis",
+            "Customizable Prediction Models"
         ]
     },
 
@@ -48,12 +64,28 @@ featured_projects = [
             "MySQL"
         ],
         "category": "Data Science",
-        "documentation": "Included",
-        "source_code": "Included",
-        "status": "Completed",
-        "price":"₦18,000",
+        "includes": [
+            {
+                "label": "Chapter 1–5 Microsoft Word Documentation",
+                "available": True
+            },
+            {
+                "label": "Complete Source Code",
+                "available": True
+            },
+            {
+                "label": "Database Files",
+                "available": True
+            },
+            {
+                "label": "Installation Guide",
+                "available": True
+            }
+        ],
+        "status": "completed",
+        "price": 18000,
         "software_images": [
-            "complaint-maintenance-1.jpg",
+            "complaint-maintenance-1.webp",
             "complaint-maintenance-2.jpg",
             "complaint-maintenance-3.jpg",
             "complaint-maintenance-4.jpg"
@@ -66,10 +98,10 @@ featured_projects = [
         ],
         "description": "A comprehensive system for tracking complaints and maintenance requests in real-time.",
         "features": [
-            "Chapter 1–5 Microsoft Word Documentation",
-            "User-friendly interface",
-            "Real-time updates",
-            "Report generation"
+            "Real-time Tracking",
+            "Automated Notifications",
+            "Comprehensive Reporting",
+            "User-Friendly Interface"
         ]
     },
 
@@ -83,12 +115,28 @@ featured_projects = [
             "Flask"
         ],
         "category": "Web Development",
-        "documentation": "Included",
-        "source_code": "Included",
-        "status": "Completed",
-        "price":"₦20,000",
+        "includes": [
+            {
+                "label": "Chapter 1–5 Microsoft Word Documentation",
+                "available": True
+            },
+            {
+                "label": "Complete Source Code",
+                "available": True
+            },
+            {
+                "label": "Database Files",
+                "available": True
+            },
+            {
+                "label": "Installation Guide",
+                "available": True
+            }
+        ],
+        "status": "completed",
+        "price": 20000,
         "software_images": [
-            "digital-queue-1.jpg",
+            "digital-queue-1.webp",
             "digital-queue-2.jpg",
             "digital-queue-3.jpg",
             "digital-queue-4.jpg"
@@ -101,10 +149,10 @@ featured_projects = [
         ],
         "description": "A modern solution for managing queues in various settings.",
         "features": [
-            "Chapter 1–5 Microsoft Word Documentation",
-            "Real-time queue management",
-            "User-friendly interface",
-            "Analytics and reporting"
+            "Digital Queue Management",
+            "Real-time Updates",
+            "User Notifications",
+            "Analytics and Reporting"
         ]
     },
 
@@ -118,12 +166,28 @@ featured_projects = [
             "Flask"
         ],
         "category": "Artificial Intelligence",
-        "documentation": "Included",
-        "source_code": "Included",
-        "status": "Completed",
-        "price":"₦22,000",
+        "includes": [
+            {
+                "label": "Chapter 1–5 Microsoft Word Documentation",
+                "available": True
+            },
+            {
+                "label": "Complete Source Code",
+                "available": True
+            },
+            {
+                "label": "Database Files",
+                "available": True
+            },
+            {
+                "label": "Installation Guide",
+                "available": True
+            }
+        ],
+        "status": "completed",
+        "price": 22000,
         "software_images": [
-            "student-marketplace-1.jpg",
+            "student-marketplace-1.png",
             "student-marketplace-2.jpg",
             "student-marketplace-3.jpg",
             "student-marketplace-4.jpg"
@@ -136,10 +200,10 @@ featured_projects = [
         ],
         "description": "A platform for students to buy and sell used textbooks and supplies.",
         "features": [
-            "Chapter 1–5 Microsoft Word Documentation",
-            "User-friendly interface",
-            "Secure payment processing",
-            "Detailed product listings"
+            "Online Marketplace",
+            "Secure Transactions",
+            "User Reviews and Ratings",
+            "Search and Filter Options"
         ]
     }
 ]

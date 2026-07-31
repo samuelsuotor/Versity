@@ -1,4 +1,4 @@
-<div class="project-card">
+<div class="project-card" data-url="{{ url_for('project_details', slug=project.slug) }}">
 
     <div class="project-image">
 
@@ -30,7 +30,7 @@
 
             <strong>
 
-                {{ project.price }}
+                ₦{{ "{:,}".format(project.price) }}
 
             </strong>
 

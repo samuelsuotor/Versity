@@ -1,0 +1,97 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}
+Browse All Projects
+{% endblock %}
+
+{% block content %}
+
+<section class="search-results-page">
+
+    <div class="container">
+
+        {% include "partials/back-button.html" %}
+
+        <div class="search-header">
+
+            <h1>
+
+                Browse All Projects
+
+            </h1>
+
+            <p>
+
+                Explore every completed project currently available on Versity.
+
+            </p>
+
+        </div>
+
+        <form class="hero-search" method="GET" action="{{ url_for('search_projects') }}">
+
+            <input type="text" name="search" placeholder="Search projects...">
+
+            <button type="submit">
+
+                Search
+
+            </button>
+
+        </form>
+
+        <div class="projects-toolbar">
+
+            <div class="projects-count">
+
+                {{ featured_projects|length }}
+
+                Project{% if featured_projects|length != 1 %}s{% endif %}
+
+            </div>
+
+            <form method="GET" action="{{ url_for('all_projects') }}">
+
+                <select name="sort" onchange="this.form.submit()">
+
+                    <option value="default" {% if current_sort=="default" %}selected{% endif %}>
+                        Default
+                    </option>
+
+                    <option value="az" {% if current_sort=="az" %}selected{% endif %}>
+                        Alphabetical (A–Z)
+                    </option>
+
+                    <option value="department" {% if current_sort=="department" %}selected{% endif %}>
+                        Department
+                    </option>
+
+                    <option value="price_low" {% if current_sort=="price_low" %}selected{% endif %}>
+                        Price (Low → High)
+                    </option>
+
+                    <option value="price_high" {% if current_sort=="price_high" %}selected{% endif %}>
+                        Price (High → Low)
+                    </option>
+
+                </select>
+
+            </form>
+
+        </div>
+
+        <div class="projects-grid">
+
+            {% for project in featured_projects %}
+
+            {% include "partials/project-card.html" %}
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

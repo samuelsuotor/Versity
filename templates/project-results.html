@@ -10,6 +10,8 @@ Search Results
 
     <div class="container">
 
+        {% include "partials/back-button.html" %}
+
         <div class="search-header">
 
             <h1>
@@ -56,16 +58,6 @@ Search Results
             </button>
 
         </form>
-
-        <div class="search-navigation">
-
-            <a href="{{ url_for('home') }}">
-
-                ← Back to Home
-
-            </a>
-
-        </div>
 
         {% include "partials/search-projects.html" %}
 

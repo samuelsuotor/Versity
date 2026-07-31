@@ -1,33 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+    // ==========================================
+    //              Hero Animation
+    // ==========================================
+
     const hero = document.querySelector(".hero");
-    const heroSearch = document.querySelector(".hero-search input");
-    const departmentCards = document.querySelectorAll(".department-card");
 
-    // Department card click
-    if (departmentCards.length > 0 && heroSearch) {
-
-        departmentCards.forEach(card => {
-
-            card.addEventListener("click", () => {
-
-                const department = card.dataset.department;
-
-                heroSearch.value = department;
-                heroSearch.focus();
-
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
-                });
-
-            });
-
-        });
-
-    }
-
-    // Hero animation
     if (hero) {
 
         hero.style.opacity = "0";
@@ -59,20 +37,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 mainPreview.src = thumbnail.src;
 
-                thumbnails.forEach(img => {
+                thumbnails.forEach(image => {
 
-                img.classList.remove("active");
+                    image.classList.remove("active");
 
-            });
+                });
 
-            thumbnail.classList.add("active");
+                thumbnail.classList.add("active");
 
             });
 
         });
 
     }
-});
+
+
+    // ==========================================
+    //              Mobile Navigation
+    // ==========================================
 
     const menuToggle = document.getElementById("menuToggle");
     const mobileMenu = document.getElementById("mobileMenu");
@@ -86,12 +68,9 @@ document.addEventListener("DOMContentLoaded", () => {
             document.body.classList.toggle("menu-open");
 
             menuToggle.textContent =
-
                 mobileMenu.classList.contains("active")
-
-                ? "✕"
-
-                : "☰";
+                    ? "✕"
+                    : "☰";
 
         });
 
@@ -101,13 +80,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 mobileMenu.classList.remove("active");
 
+                document.body.classList.remove("menu-open");
+
                 menuToggle.textContent = "☰";
 
             });
 
         });
-
-    }
 
         document.addEventListener("click", (event) => {
 
@@ -123,8 +102,57 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 mobileMenu.classList.remove("active");
 
+                document.body.classList.remove("menu-open");
+
                 menuToggle.textContent = "☰";
 
             }
 
         });
+
+    }
+
+    // ==========================================
+    //          Clickable Project Cards
+    // ==========================================
+
+    const projectCards = document.querySelectorAll(".project-card");
+
+    projectCards.forEach(card => {
+
+        card.addEventListener("click", (event) => {
+
+            // Don't hijack clicks on actual links
+            if (event.target.closest("a")) {
+                return;
+            }
+
+            window.location.href = card.dataset.url;
+
+        });
+
+    });
+
+});
+
+const backButton = document.getElementById("backButton");
+
+if (backButton) {
+
+    backButton.addEventListener("click", (event) => {
+
+        event.preventDefault();
+
+        if (window.history.length > 1) {
+
+            window.history.back();
+
+        } else {
+
+            window.location.href = "/";
+
+        }
+
+    });
+
+}

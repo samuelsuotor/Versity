@@ -10,26 +10,42 @@
 
         <nav class="nav-links">
 
-            <a href="#">Projects</a>
+            <a href="{{ url_for('all_projects') }}">
 
-            <a href="#">Software</a>
+                Projects
 
-            <a href="#">Departments</a>
+            </a>
 
-            <a href="#">Services</a>
+            <a href="#">
+
+                Software
+
+            </a>
+
+            <a href="#departments">
+
+                Departments
+
+            </a>
+
+            <a href="#">
+
+                Services
+
+            </a>
 
         </nav>
 
         <div class="nav-actions">
 
-            <a href="{{ url_for('search_projects') }}" class="search-btn" title="Search Projects"
+            <a href="{{ url_for('all_projects') }}" class="search-btn" title="Search Projects"
                 aria-label="Search Projects">
 
                 🔍
 
             </a>
 
-            <a href="{{ url_for('search_projects') }}" class="browse-btn">
+            <a href="{{ url_for('all_projects') }}" class="browse-btn">
 
                 Browse Projects
 
@@ -51,17 +67,17 @@
 
     <nav class="mobile-nav">
 
-        <a href="#">Projects</a>
+        <a href="{{ url_for('all_projects') }}">Projects</a>
 
         <a href="#">Software</a>
 
-        <a href="#">Departments</a>
+        <a href="">Departments</a>
 
         <a href="#">Services</a>
 
         <hr>
 
-        <a href="{{ url_for('search_projects') }}">
+        <a href="{{ url_for('all_projects') }}">
 
             🔍 Search Projects
 

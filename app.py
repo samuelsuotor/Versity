@@ -220,5 +220,50 @@ def project_details(slug):
         whatsapp_number=WHATSAPP_NUMBER
     )
 
+@app.route("/projects")
+def all_projects():
+
+    sort = request.args.get("sort", "default")
+
+    projects = featured_projects.copy()
+
+    if sort == "az":
+
+        projects.sort(key=lambda project: project["title"])
+
+    elif sort == "department":
+
+        projects.sort(key=lambda project: project["department"])
+
+    if sort == "price_low":
+
+        projects.sort(
+
+            key=lambda project: project["price"]
+
+        )
+
+    elif sort == "price_high":
+
+        projects.sort(
+
+            key=lambda project: project["price"],
+
+            reverse=True
+
+        )
+
+    return render_template(
+
+        "all-projects.html",
+
+        featured_projects=projects,
+
+        current_sort=sort,
+
+        whatsapp_number=WHATSAPP_NUMBER
+
+    )
+
 if __name__ == "__main__":
     app.run(port=5000, host="0.0.0.0", debug=True)
