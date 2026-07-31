@@ -684,6 +684,12 @@ body.menu-open {
 
     box-shadow: 0 10px 30px rgba(15, 23, 42, .04);
 
+    text-decoration: none;
+       
+    color: inherit;
+        
+    display: block;
+
 }
 
 .department-card:hover {
@@ -723,6 +729,16 @@ body.menu-open {
 
     margin-bottom: 24px;
 
+    /* color: #8b7464; */
+
+}
+
+.department-coming-soon {
+
+    color: #94a3b8;
+
+    font-style: italic;
+
 }
 
 .department-card a {
@@ -732,6 +748,50 @@ body.menu-open {
     font-weight: 600;
 
     text-decoration: none;
+
+}
+
+.department-link {
+
+    color: var(--primary);
+
+    font-weight: 600;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: .35rem;
+
+    margin-top: 1rem;
+
+}
+
+.department-disabled {
+
+    cursor: not-allowed;
+
+    opacity: .75;
+
+}
+
+.department-disabled .department-icon {
+
+    filter: grayscale(.35);
+
+}
+
+.department-disabled .department-link {
+
+    display: none;
+
+}
+
+.department-disabled:hover {
+
+    transform: none;
+
+    box-shadow: var(--shadow);
 
 }
 

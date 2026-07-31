@@ -1,9 +1,68 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, abort, jsonify
 from config import Config
-from flask import abort
 from data import featured_projects
 
 WHATSAPP_NUMBER = "2348143467785"
+
+departments = [
+
+        {
+            "icon":"💻",
+            "name":"Computer Science",
+            "slug":"computer-science",
+        
+       },
+
+        {
+            "icon":"⚙️",
+            "name":"Software Engineering",
+            "slug":"software-engineering",
+            
+        },
+
+        {
+            "icon":"🌐",
+            "name":"Information Technology",
+            "slug":"information-technology",
+            
+        },
+
+        {
+            "icon":"🛡️",
+            "name":"Cyber Security",
+            "slug":"cyber-security",
+            
+        },
+
+        {
+            "icon":"💼",
+            "name":"Business Administration",
+            "slug":"business-administration",
+            
+        },
+
+        {
+            "icon":"📊",
+            "name":"Accounting",
+            "slug":"accounting",
+            
+        },
+
+        {
+            "icon":"📈",
+            "name":"Economics",
+            "slug":"economics",
+            
+        },
+
+        {
+            "icon":"📣",
+            "name":"Marketing",
+            "slug":"marketing",
+            
+        }
+
+    ]
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -11,63 +70,32 @@ app.config.from_object(Config)
 
 @app.route("/")
 def home():
-    departments = [
+    
+    departments_with_counts = []
 
-        {
-            "icon":"💻",
-            "name":"Computer Science",
-            "projects":128
-        },
+    for department in departments:
 
-        {
-            "icon":"⚙️",
-            "name":"Software Engineering",
-            "projects":74
-        },
+        project_count = sum(
 
-        {
-            "icon":"🌐",
-            "name":"Information Technology",
-            "projects":59
-        },
+            1
 
-        {
-            "icon":"🛡️",
-            "name":"Cyber Security",
-            "projects":41
-        },
+            for project in featured_projects
 
-        {
-            "icon":"💼",
-            "name":"Business Administration",
-            "projects":63
-        },
+            if project["department"] == department["name"]
 
-        {
-            "icon":"📊",
-            "name":"Accounting",
-            "projects":56
-        },
+        )
 
-        {
-            "icon":"📈",
-            "name":"Economics",
-            "projects":38
-        },
+        department_copy = department.copy()
 
-        {
-            "icon":"📣",
-            "name":"Marketing",
-            "projects":27
-        }
+        department_copy["projects"] = project_count
 
-    ]
+        departments_with_counts.append(department_copy)
 
     return render_template(
 
         "index.html",
 
-        departments=departments,
+        departments=departments_with_counts,
 
         featured_projects=featured_projects,
 
@@ -119,6 +147,54 @@ def search_projects():
         search_query=search_query,
 
         page_title="Search Results",
+
+        whatsapp_number=WHATSAPP_NUMBER
+
+    )
+
+@app.route("/departments/<department_slug>")
+def department_projects(department_slug):
+
+    department = next(
+
+        (
+            dept
+
+            for dept in departments
+
+            if dept["slug"] == department_slug
+
+        ),
+
+        None
+
+    )
+
+    if not department:
+
+        abort(404)
+
+    filtered_projects = [
+
+        project
+
+        for project in featured_projects
+
+        if project["department"] == department["name"]
+
+    ]
+
+    return render_template(
+
+        "project-results.html",
+
+        featured_projects=filtered_projects,
+
+        page_title=department["name"],
+
+        page_description=f"Showing {len(filtered_projects)} project(s) from the {department['name']} department.",
+
+        search_query="",
 
         whatsapp_number=WHATSAPP_NUMBER
 
