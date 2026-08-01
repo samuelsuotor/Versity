@@ -1,0 +1,833 @@
+Current Progress
+✅ Sprint 1.1 – Foundation
+Project structure
+Flask setup
+Configuration
+Templates
+Static assets
+✅ Sprint 1.2 – Navigation
+Responsive navbar
+Mobile navigation
+Hamburger menu
+Search icon
+Browse Projects button
+✅ Sprint 1.3 – Hero Section
+Hero layout
+Hero search
+CTA buttons
+Hero statistics
+Responsive adjustments
+✅ Sprint 1.4 – Browse by Department
+Department cards
+Dynamic rendering
+Department routing
+Department pages
+"Coming Soon" handling
+✅ Sprint 1.5 – Featured Projects
+Reusable project cards
+Dynamic data from data.py
+Homepage integration
+✅ Sprint 1.6 – Project Details
+Individual project pages
+Image gallery
+Report preview
+WhatsApp purchase
+Dynamic routing
+✅ Sprint 1.7 – Search
+Functional search
+Search results page
+Empty state
+Custom project request
+Improved messaging
+✅ Sprint 1.8 – Mobile & Responsiveness
+Hero fixes
+Department alignment
+Mobile navigation
+Layout improvements
+
+
+✅ Sprint 1.9 (Current Sprint)
+
+Completed so far:
+
+Dedicated search page
+Department pages
+Project details
+Browse Projects route
+Reusable project components
+JS cleanup/refactor
+Git commits
+Various UI fixes
+
+
+
+
+
+
+
+Remaining tasks in Sprint 1.9
+
+I suggest this order:
+
+1️⃣ Finish Browse All Projects
+
+Very small amount left.
+
+Make sure:
+
+/projects works
+Navbar button opens it
+Hero button opens it
+"View All Projects" button appears below Featured Projects
+2️⃣ Improve the All Projects page
+
+Instead of just dumping every project, make it feel like a marketplace.
+
+Example:
+
+Browse All Projects
+
+4 Projects Available
+
+[Search]
+
+Computer Science
+Software Engineering
+Information Technology
+...
+
+------------------------------------
+Project Cards
+------------------------------------
+
+Still simple, but much nicer.
+
+3️⃣ Add sorting
+
+A dropdown:
+
+Sort By
+
+Newest
+Price: Low to High
+Price: High to Low
+Alphabetical
+Department
+
+The sorting doesn't even need a database yet—we can sort the Python list.
+
+4️⃣ Pagination
+
+Right now there are only four projects.
+
+Later there'll be:
+
+50
+100
+300
+1000
+
+We shouldn't show everything on one page.
+
+We'll build pagination now so it scales later.
+
+5️⃣ Breadcrumb navigation
+
+Example:
+
+Home
+>
+Projects
+>
+Fuel Price Prediction System
+
+Very small feature.
+
+Very professional.
+
+Very good for SEO.
+
+
+The Versity Development Roadmap
+Phase 0 — Product Strategy ✅ (Current Phase)
+
+This is where we decide what Versity is.
+
+Deliverables:
+
+Brand Name ✅ (Versity)
+Vision ✅
+Mission
+Target Audience
+Business Model
+Feature Roadmap
+Product Positioning
+Phase 1 — The Versity Design Bible
+
+This becomes the foundation of everything.
+
+Every button.
+
+Every page.
+
+Every animation.
+
+Every icon.
+
+Every color.
+
+Everything follows this document.
+
+Once it's complete, we don't debate design anymore—we simply implement it.
+
+Phase 2 — UX (User Experience)
+
+We'll answer questions like:
+
+How does someone buy a project?
+How do they search?
+How do they contact you?
+How does the admin upload a new project?
+How does a payment become "Delivered"?
+What happens after checkout?
+
+We'll map every user journey.
+
+Phase 3 — UI Design
+
+This is where the software starts becoming visible.
+
+We'll design:
+
+Landing Page
+Marketplace
+Project Details
+Checkout
+Login
+Register
+Dashboard
+Admin Panel
+Mobile Screens
+
+Only after every screen is approved...
+
+Phase 4 — Development
+
+Now we write code.
+
+No redesigning.
+
+No guessing.
+
+Just building.
+
+Phase 5 — Testing
+Performance
+Mobile
+Security
+Accessibility
+Payments
+Deployment
+Phase 6 — Launch
+
+GitHub
+
+↓
+
+Railway
+
+↓
+
+Domain
+
+↓
+
+Google Search Console
+
+↓
+
+Analytics
+
+↓
+
+Real Customers
+
+
+
+So here's our updated Version 1 vision
+Public Website
+Beautiful homepage
+Browse by department
+Intelligent search
+Project previews
+Software marketplace
+Project details pages
+WhatsApp contact
+Secure payment
+FAQs
+About
+Contact
+Admin Dashboard (Private)
+Login
+Manage projects
+Manage software
+Manage departments
+View orders
+Verify payments
+Mark orders as delivered
+Manage messages
+Basic analytics
+Site settings
+Student Side
+No accounts yet.
+Browse freely.
+Purchase easily.
+Receive what they paid for.
+
+
+
+The Versity Ecosystem
+
+Version 1 consists of only two systems.
+
+                VERSITY
+
+          ┌─────────────────┐
+          │                 │
+          │  Public Website │
+          │                 │
+          └────────┬────────┘
+                   │
+         Database + Backend
+                   │
+          ┌────────▼────────┐
+          │                 │
+          │ Admin Dashboard │
+          │                 │
+          └─────────────────┘
+
+
+Module 1
+Landing Experience
+
+Contains:
+
+Hero
+Search
+Categories
+Popular Projects
+Software
+Testimonials
+Footer
+Module 2
+Browse Projects
+
+Beautiful grid.
+
+Powerful filtering.
+
+Sorting.
+
+Search.
+
+Pagination.
+
+Filters
+
+Department
+
+↓
+
+Technology
+
+↓
+
+Price
+
+↓
+
+Project Type
+
+↓
+
+Newest
+
+↓
+
+Most Popular
+
+Module 3
+Browse Software
+
+Exactly like Projects.
+
+Different content.
+
+Module 4
+Project Workspace
+
+Partner...
+
+This page will become our masterpiece.
+
+Every project deserves its own workspace.
+
+Inside:
+
+Project Title
+
+↓
+
+Interactive Preview
+
+↓
+
+Project Snapshot
+
+↓
+
+Technologies Used
+
+↓
+
+Project Description
+
+↓
+
+System Requirements
+
+↓
+
+Screenshots
+
+↓
+
+Price
+
+↓
+
+Purchase Button
+
+↓
+
+WhatsApp Button
+
+↓
+
+Related Projects
+
+That's it.
+
+Everything a student needs.
+
+Module 5
+Search Engine
+
+I don't mean a search box.
+
+I mean an actual search engine.
+
+Capable of searching:
+
+Project title
+
+Department
+
+Programming Language
+
+Framework
+
+Database
+
+Keywords
+
+Technologies
+
+Year
+
+Category
+
+Even abbreviations.
+
+Example:
+
+Typing
+
+ML
+
+should still find
+
+Machine Learning.
+
+Module 6
+Purchase Flow
+
+I have redesigned it.
+
+Instead of:
+
+Buy
+
+↓
+
+Download
+
+I think it should become:
+
+View Project
+
+↓
+
+Click Purchase
+
+↓
+
+Choose Payment Method
+
+↓
+
+Payment Successful
+
+↓
+
+Confirmation Page
+
+↓
+
+Admin Verifies
+
+↓
+
+Student Receives Download
+
+Transparent.
+
+Professional.
+
+Module 7
+Contact
+
+Simple.
+
+WhatsApp
+
+Email
+
+Contact Form
+
+Nothing complicated.
+
+
+ADMIN DASHBOARD
+
+Partner...
+
+This should feel like sitting inside the control room of Versity.
+
+Dashboard Home
+
+Displays:
+
+Revenue
+
+↓
+
+Today's Visitors
+
+↓
+
+Today's Orders
+
+↓
+
+Projects
+
+↓
+
+Software
+
+↓
+
+Pending Deliveries
+
+↓
+
+Messages
+
+↓
+
+Quick Actions
+
+
+
+Everything important.
+
+Immediately visible.
+
+Projects Module
+
+This might become the biggest module.
+
+Capabilities:
+
+Add Project
+
+Edit Project
+
+Delete Project
+
+Archive Project
+
+Duplicate Project
+
+Upload Images
+
+Upload Preview
+
+Upload ZIP
+
+Set Price
+
+Assign Department
+
+Assign Technologies
+
+Choose Featured
+
+Choose Popular
+
+Publish
+
+Unpublish
+
+Schedule Publish (future)
+
+Everything.
+
+Software Module
+
+Exactly the same.
+
+Different content.
+
+Orders Module
+
+Every purchase.
+
+Status.
+
+Customer.
+
+Payment.
+
+Files.
+
+Notes.
+
+Delivery.
+
+
+Messages
+
+Every WhatsApp enquiry.
+
+Every contact form.
+
+Everything in one inbox.
+
+Even if the conversation continues on WhatsApp, the original enquiry stays recorded in Versity.
+
+Analytics
+
+Visitors
+
+Departments
+
+Most Viewed Projects
+
+Best Sellers
+
+Revenue
+
+Conversion Rate
+
+Search Trends
+
+Average Purchase Value
+
+Top Technologies
+
+This information becomes valuable over time.
+
+Departments Module
+
+Partner...
+
+Instead of hardcoding departments...
+
+Let's manage them.
+
+Meaning:
+
+You can:
+
+Add Department
+
+Delete Department
+
+Change Icon
+
+Description
+
+Banner
+
+Featured
+
+Order
+
+Everything.
+
+Suppose one day you add
+
+Medicine.
+
+No code.
+
+Just click
+
+Add Department.
+
+Done.
+
+Technologies Module
+
+Exactly the same.
+
+Examples
+
+Python
+
+Flutter
+
+PHP
+
+Laravel
+
+React
+
+Java
+
+Machine Learning
+
+AI
+
+Cybersecurity
+
+Managed from the dashboard.
+
+Settings
+
+Everything belongs here.
+
+Website Name
+
+Logo
+
+Homepage Banner
+
+WhatsApp Number
+
+Email
+
+Social Links
+
+Payment Accounts
+
+Bank Details
+
+Footer
+
+SEO
+
+Analytics
+
+Theme
+
+Maintenance Mode
+
+Everything configurable.
+
+Security
+
+I want security built in from day one.
+
+Admin login:
+
+Password hashing
+Session timeout
+CSRF protection
+Input validation
+File upload validation
+SQL injection protection
+XSS protection
+Rate limiting on login
+Audit logs for admin actions
+
+Even though it's a student project, it should demonstrate professional practices.
+
+
+
+The Final Product Roadmap
+
+Phase A — Design ✅
+Brand
+Design Bible
+User Experience
+Screen Architecture
+
+Phase B — Visual Design✅
+High-fidelity UI screens
+Icons
+Components
+Mobile layouts
+
+Phase C — Development
+Flask backend
+Database
+Admin dashboard
+Public website
+Payment flow
+
+Phase D — Testing
+Functional testing
+Mobile responsiveness
+Cross-browser testing
+Performance optimization
+
+Phase E — Deployment
+Railway deployment
+Custom domain
+SSL
+PWA installation
+Live launch
+
+
+
+
+Sprint 1.1 - Project foundation
+
+Sprint 1.2 - Navigation
+
+Sprint 1.3 - Hero section
+
+Sprint 1.4 - Department cards
+
+Sprint 1.5 - Footer
+
+Sprint 2.1 - Project listing
+
+Sprint 2.2 - Search engine
+
+Sprint 3.1 - Admin login
+
+Sprint 3.2 - Dashboard
