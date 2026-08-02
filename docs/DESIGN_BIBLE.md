@@ -1,652 +1,363 @@
-# VERSITY DESIGN BIBLE
+# The Versity Design Bible
 
-> Version: 1.0
-> Status: Living Document
-> Last Updated: Sprint 1.9 Planning
+## A Philosophy for Building Software
 
 ---
 
-# 1. Our Design Philosophy
+# Introduction
 
-## Invisible Design
+Versity is not just a website.
 
-Good design shouldn't scream.
+It is a product.
 
-It should quietly help users accomplish their goals.
+Every decision made during its development should contribute to one goal:
 
-If users notice the interface more than their task, we've probably over-designed it.
+**Helping students achieve their goals with as little friction as possible.**
 
-Every element must earn its place.
+Technology should never become the centre of attention.
 
-Nothing exists merely because it looks attractive.
+The student should.
 
-Everything should improve usability, clarity or trust.
+The interface should quietly disappear into the background, allowing the user's task to remain the focus.
+
+This philosophy influences every page, every button, every animation, every line of code, and every future version of Versity.
 
 ---
 
-# 2. The Golden Principles
+# The Core Belief
 
-Every design decision in Versity must satisfy these five principles.
+Good software does not impress people by being complicated.
+
+Good software becomes invisible.
+
+When students visit Versity, they should not admire the interface.
+
+They should simply find the project they need.
+
+Purchase it confidently.
+
+Leave satisfied.
+
+If users notice the interface more than they notice their progress, we have probably designed too much.
+
+This is Invisible Design.
+
+---
+
+# The Five Golden Principles
+
+Every design decision should satisfy these principles.
+
+---
 
 ## 1. Clarity First
 
 Users should immediately understand:
 
-- Where they are
-- What they can do
-- What happens next
+- Where they are.
+- What they can do.
+- What will happen next.
 
-Nothing should require explanation.
+Nothing should require unnecessary thinking.
+
+Confusion is a design failure.
 
 ---
 
 ## 2. Consistency Always
 
-Every repeated component behaves identically.
+Every repeated element should behave exactly the same.
 
-Examples:
+Buttons.
 
-- Buttons
-- Cards
-- Search
-- Forms
-- Navigation
-- Back buttons
-- Purchase boxes
+Cards.
 
-Users should never have to relearn the interface.
+Search.
+
+Navigation.
+
+Spacing.
+
+Animations.
+
+Interactions.
+
+Consistency reduces learning.
+
+When users already know how something behaves, they feel confident using it.
 
 ---
 
 ## 3. White Space Is a Feature
 
-Whitespace is not wasted space.
+White space is not empty.
 
-Whitespace:
+It creates focus.
 
-- Improves focus
-- Creates elegance
-- Reduces cognitive load
-- Guides the eye
+It separates ideas.
 
-Never fill empty space simply because it exists.
+It reduces cognitive load.
+
+It improves readability.
+
+It communicates professionalism.
+
+We do not fill space simply because it exists.
+
+We allow the interface to breathe.
 
 ---
 
 ## 4. Motion With Purpose
 
-Animations should explain interactions.
+Animation exists to explain interaction.
 
-They should never exist only for decoration.
+Not to entertain.
 
-Good examples:
+Movement should answer questions such as:
 
-- Hover feedback
-- Page transitions
-- Image gallery changes
-- Menu opening
-- Loading indicators
+- What changed?
+- What opened?
+- What closed?
+- What happened after I clicked?
 
-Bad examples:
-
-- Random bouncing
-- Flashing
-- Excessive scaling
-- Decorative movement
-
-Motion should feel calm.
+If an animation does not improve understanding, it probably should not exist.
 
 ---
 
 ## 5. Earn Trust Visually
 
-Before a user reads a word, the interface should communicate:
+Students judge credibility within seconds.
 
-- Professionalism
-- Reliability
-- Simplicity
-- Quality
+Professional typography.
 
-Trust comes from:
+Comfortable spacing.
 
-- Typography
-- Spacing
-- Consistent colors
-- Predictable interactions
-- Alignment
-- Attention to detail
+Predictable interactions.
 
----
+Consistent colours.
 
-# 3. Brand Identity
+Readable layouts.
 
-Versity is not just another student project website.
+Together they communicate reliability before a single word is read.
 
-It is a premium academic marketplace.
-
-Its personality is:
-
-- Calm
-- Professional
-- Intelligent
-- Helpful
-- Premium
-- Modern
-- Minimal
+Trust is designed.
 
 ---
 
-# 4. Colour System
+# Design Is Problem Solving
 
-Every colour has a purpose.
+Decoration is not design.
 
-Never introduce colours without a job.
+Complexity is not sophistication.
 
-## Primary Brand
+Good design solves problems.
 
-Royal Blue
+Whenever a feature is proposed, ask:
 
-#2563EB
+"What problem does this solve for the student?"
 
-Represents:
-
-- Trust
-- Technology
-- Education
-- Intelligence
-- Professionalism
+If the answer is unclear, the feature should not be built.
 
 ---
 
-## Primary Hover
+# Progressive Simplicity
 
-#1D4ED8
+Versity should never become complicated overnight.
 
----
+The platform should evolve gradually.
 
-## Primary Active
+Each version should feel like a natural improvement over the previous one.
 
-#1E40AF
-
----
-
-## Background
-
-#FAFAFA
-
-Soft.
-
-Elegant.
-
-Comfortable.
+New functionality must never make existing functionality harder to use.
 
 ---
 
-## Surface
+# Build for Tomorrow
 
-#FFFFFF
+Every decision should consider future growth.
 
-Cards
+Examples include:
 
-Inputs
+- Reusable components.
+- Clean architecture.
+- Consistent naming.
+- Scalable layouts.
+- Flexible styling.
 
-Sections
-
----
-
-## Primary Text
-
-#111827
-
-Nearly black.
-
-Maximum readability.
+Good architecture allows the platform to grow without requiring complete rewrites.
 
 ---
 
-## Secondary Text
+# Components Over Pages
 
-#6B7280
+Pages are temporary.
 
-Descriptions
+Components are permanent.
 
-Captions
+Instead of designing entire pages, we design reusable building blocks.
 
-Supporting information
+When components improve, every page improves automatically.
 
----
-
-## Borders
-
-#E5E7EB
-
-Very subtle.
-
-Never heavy.
+Reuse is a design feature.
 
 ---
 
-## Success
+# Performance Is Part of Design
 
-#16A34A
+Fast interfaces feel intelligent.
 
-Used for:
+Slow interfaces create doubt.
 
-- Successful purchase
-- Approved
-- Delivered
+Performance is not a technical concern alone.
 
----
+It is a user experience concern.
 
-## Warning
-
-#F59E0B
-
-Used for:
-
-- Pending payment
-- Awaiting approval
-- Drafts
+Optimisation is part of the design process.
 
 ---
 
-## Error
+# Accessibility Is Respect
 
-#DC2626
+Versity should be usable by as many people as possible.
 
-Use sparingly.
+Readable text.
 
-Only for genuine problems.
+Comfortable spacing.
 
----
+Logical navigation.
 
-# 5. Typography
+Keyboard accessibility where appropriate.
 
-Primary Font
+Good contrast.
 
-Inter
-
-Reasons:
-
-- Modern
-- Readable
-- Free
-- Mobile friendly
-- Professional
+Accessible software is better software.
 
 ---
 
-## Typography Hierarchy
+# Mobile Is Not an Afterthought
 
-H1
+Students use many devices.
 
-Major page titles
+Every experience should feel intentionally designed for:
 
----
+- Mobile phones.
+- Tablets.
+- Laptops.
+- Desktop computers.
 
-H2
-
-Section titles
-
----
-
-H3
-
-Card titles
+Responsive design is a requirement, not a bonus.
 
 ---
 
-Body
+# Business Through Trust
 
-Descriptions
+Versity is a business.
 
----
+Businesses grow through trust.
 
-Caption
+Trust is earned through:
 
-Small supporting information
+- Predictable behaviour.
+- Honest communication.
+- Reliable performance.
+- Professional presentation.
 
----
-
-Never randomly choose font sizes.
-
-Everything follows hierarchy.
-
----
-
-# 6. Border Radius
-
-Buttons
-
-10px
+Every screen should reinforce confidence.
 
 ---
 
-Inputs
+# The Boy Scout Rule
 
-10px
+Leave every part of the project a little better than you found it.
 
----
+Improve names.
 
-Cards
+Improve spacing.
 
-16px
+Improve consistency.
 
----
+Reduce duplication.
 
-Images
-
-16px
+Small improvements accumulate into excellent software.
 
 ---
 
-Modals
+# Version Philosophy
 
-20px
+Every version has one responsibility.
 
-Rounded enough to feel modern.
+Version 1
 
-Never cartoonish.
+Validate the marketplace.
 
----
+Version 2
 
-# 7. Shadows
+Automate the business.
 
-Shadows are structural.
+Version 3
 
-Not decorative.
+Expand into a multi-vendor academic marketplace.
 
-Use extremely soft shadows.
+Future versions
 
-If users notice the shadow,
+Grow the educational ecosystem.
 
-it is probably too strong.
+Never build future-version features inside the current version.
 
----
-
-# 8. Motion
-
-Animations should feel calm.
-
-Preferred duration:
-
-300–400ms
-
-Avoid:
-
-- Fast flashes
-- Bounce animations
-- Excessive scaling
-
-Every animation should explain an interaction.
+Discipline creates focus.
 
 ---
 
-# 9. Spacing System
+# Product Before Project
 
-Consistency creates polish.
+Versity is never treated as a school assignment.
 
-Use a standard spacing scale.
+Every decision should be evaluated as though millions of students may eventually use the platform.
 
-## XS
+Think beyond submission.
 
-16px
+Think beyond graduation.
 
----
-
-## S
-
-24px
+Build something worth maintaining.
 
 ---
 
-## M
+# The Versity Standard
 
-40px
+Before completing any feature, ask:
 
----
+- Is it clear?
+- Is it consistent?
+- Is it simple?
+- Is it reusable?
+- Is it responsive?
+- Is it accessible?
+- Does it earn trust?
+- Does it follow Invisible Design?
 
-## L
-
-64px
-
----
-
-## XL
-
-96px
-
-Avoid arbitrary values.
+If the answer to any question is "No", the feature is not finished.
 
 ---
 
-# 10. Container
+# Our Commitment
 
-Standard container.
+We will choose quality over speed.
 
-Max Width:
+We will choose simplicity over complexity.
 
-1280px
+We will choose consistency over novelty.
 
-Content Width:
+We will build software that quietly helps students succeed.
 
-92%
-
-Centered.
+That is the standard of Versity.
 
 ---
 
-# 11. White Space Philosophy
-
-Whitespace should guide attention.
-
-Not create empty deserts.
-
-Every page should breathe equally.
+_"Good design is not what users notice. Good design is what users no longer have to think about."_
 
 ---
 
-# 12. Internal Page Layout
+Last Updated
 
-Every internal page follows the same rhythm.
-
-Navigation
-
-↓
-
-Back Button
-
-↓
-
-Heading
-
-↓
-
-Subtitle
-
-↓
-
-Primary Action
-
-↓
-
-Content
-
-No exceptions.
-
----
-
-# 13. Cards
-
-Every card follows the same language.
-
-Consistent:
-
-- Radius
-- Padding
-- Shadows
-- Hover
-- Typography
-
-Cards are information containers.
-
-Not decoration.
-
----
-
-# 14. Buttons
-
-Primary buttons:
-
-- Same height
-- Same radius
-- Same font
-- Same transition
-
-Never redesign buttons per page.
-
----
-
-# 15. Homepage Journey
-
-Users should naturally flow through the experience.
-
-Navigation
-
-↓
-
-Hero Section
-
-↓
-
-Smart Search
-
-↓
-
-Popular Departments
-
-↓
-
-Featured Projects
-
-↓
-
-Why Students Choose Versity
-
-↓
-
-How It Works
-
-↓
-
-Student Testimonials
-
-↓
-
-Frequently Asked Questions
-
-↓
-
-Footer
-
-The journey should feel effortless.
-
----
-
-# 16. Responsiveness
-
-Every screen deserves equal attention.
-
-Desktop
-
-Tablet
-
-Mobile
-
-Large Displays
-
-Design mobile intentionally.
-
-Do not merely shrink desktop layouts.
-
----
-
-# 17. Accessibility
-
-Every interface should be:
-
-- Readable
-- Keyboard friendly
-- High contrast
-- Predictable
-
-Accessibility is part of quality.
-
----
-
-# 18. Design Review Checklist
-
-Before considering any feature complete, ask:
-
-□ Is it immediately understandable?
-
-□ Is it consistent with existing components?
-
-□ Does whitespace improve readability?
-
-□ Does motion serve a purpose?
-
-□ Does it increase user trust?
-
-□ Does it feel premium?
-
-□ Is it responsive?
-
-□ Does it align with the Versity philosophy?
-
-If any answer is "No",
-
-the design is not finished.
-
----
-
-# 19. Product Philosophy
-
-Versity is being built as a real product.
-
-Not as a school project.
-
-Every decision should prioritize:
-
-- Longevity
-- Maintainability
-- Simplicity
-- Scalability
-- User trust
-
-We build systems.
-
-Not pages.
-
-We design experiences.
-
-Not interfaces.
-
-We remove friction.
-
-Not just add features.
-
----
-
-# 20. Final Principle
-
-Whenever two design options exist,
-
-choose the one that:
-
-- removes friction,
-- improves clarity,
-- feels calmer,
-- and disappears into the user's workflow.
-
-That is Invisible Design.
+Version 1 Development

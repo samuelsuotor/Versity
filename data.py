@@ -207,3 +207,27 @@ featured_projects = [
         ]
     }
 ]
+
+
+# --------------------------------------------------
+# Development Seed Projects
+# Remove before production
+# --------------------------------------------------
+
+demo_projects = []
+
+for i in range(5, 25):
+
+    base = featured_projects[(i - 1) % len(featured_projects)].copy()
+
+    base["id"] = i
+
+    base["title"] = f"{base['title']} ({i})"
+
+    demo_projects.append(base)
+
+featured_projects.extend(demo_projects)
+
+project_catalog = featured_projects.copy()
+
+featured_projects = project_catalog[:4]

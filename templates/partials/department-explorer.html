@@ -33,32 +33,43 @@
                     {% endif %}
 
                     <div class="department-icon">
+
                         {{ department.icon }}
+
                     </div>
 
                     <h3>
+
                         {{ department.name }}
+
                     </h3>
 
                     <p>
+
                         {% if department.projects > 0 %}
 
                         {{ department.projects }}
+
                         Project{% if department.projects != 1 %}s{% endif %} Available
 
                         {% else %}
 
                         <span class="department-coming-soon">
+
                             Coming Soon
+
                         </span>
 
                         {% endif %}
+
                     </p>
 
                     {% if department.projects > 0 %}
 
                     <span class="department-link">
+
                         Explore →
+
                     </span>
 
                     {% endif %}

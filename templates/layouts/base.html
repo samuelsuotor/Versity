@@ -3,45 +3,43 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>{% block title %}Versity{% endblock %}</title>
+    <title>{% block title %}Versity{% endblock %}</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
 
-<link rel="stylesheet"
-href="{{ url_for('static', filename='css/variables.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/variables.css') }}">
 
-<link rel="stylesheet"
-href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=2">
 
-<link rel="stylesheet"
-href="{{ url_for('static', filename='css/animations.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animations.css') }}">
 
 </head>
 
 <body>
 
-{% include "partials/navbar.html" %}
+    {% include "partials/navbar.html" %}
 
-<main>
+    <main>
 
-{% block content %}
+        {% block content %}
 
-{% endblock %}
+        {% endblock %}
 
-</main>
+    </main>
 
-{% include "partials/footer.html" %}
+    {% include "partials/footer.html" %}
 
-<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 
 </body>
 

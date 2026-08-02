@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request, abort, jsonify
 from config import Config
-from data import featured_projects
+from data import featured_projects, project_catalog
 
 WHATSAPP_NUMBER = "2348143467785"
+PROJECTS_PER_PAGE = 2
 
 departments = [
 
@@ -79,7 +80,7 @@ def home():
 
             1
 
-            for project in featured_projects
+            for project in project_catalog
 
             if project["department"] == department["name"]
 
@@ -225,41 +226,58 @@ def all_projects():
 
     sort = request.args.get("sort", "default")
 
-    projects = featured_projects.copy()
+    page = request.args.get("page", 1, type=int)
+
+    projects = project_catalog.copy()
 
     if sort == "az":
 
-        projects.sort(key=lambda project: project["title"])
+        projects.sort(
+            key=lambda project: project["title"]
+        )
 
     elif sort == "department":
 
-        projects.sort(key=lambda project: project["department"])
+        projects.sort(
+            key=lambda project: project["department"]
+        )
 
-    if sort == "price_low":
+    elif sort == "price_low":
 
         projects.sort(
-
             key=lambda project: project["price"]
-
         )
 
     elif sort == "price_high":
 
         projects.sort(
-
             key=lambda project: project["price"],
-
             reverse=True
-
         )
+
+    total_projects = len(projects)
+
+    total_pages = (
+        total_projects + PROJECTS_PER_PAGE - 1
+    ) // PROJECTS_PER_PAGE
+
+    start = (page - 1) * PROJECTS_PER_PAGE
+
+    end = start + PROJECTS_PER_PAGE
+
+    paginated_projects = projects[start:end]
 
     return render_template(
 
         "all-projects.html",
 
-        featured_projects=projects,
+        featured_projects=paginated_projects,
 
         current_sort=sort,
+
+        current_page=page,
+
+        total_pages=total_pages,
 
         whatsapp_number=WHATSAPP_NUMBER
 
