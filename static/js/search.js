@@ -30,6 +30,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
 
+        dropdown.innerHTML = `
+
+        <div class="search-loading">
+
+        Searching...
+
+        </div>
+
+        `;
+
+        dropdown.style.display="block";
+
         timer = setTimeout(async ()=>{
 
             const response = await fetch(`/search-api?q=${encodeURIComponent(query)}`);
@@ -46,7 +58,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
             }
 
-            dropdown.innerHTML = results.map(project => `
+            dropdown.innerHTML = results.map(project => {
+
+                const regex = new RegExp(`(${query})`, "ig");
+
+                const highlightedTitle = project.title.replace(
+                    regex,
+                    "<mark>$1</mark>"
+                );
+
+                return `
 
             <a href="/projects/${project.slug}" class="search-item">
 
@@ -58,15 +79,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 <div class="search-content">
 
-                    <strong>${project.title}</strong>
+                    <strong>${highlightedTitle}</strong>
 
-                    <span>${project.department}</span>
+                    <span>
+
+                    ${project.department}
+
+                    •
+
+                    ${project.technology}
+
+                    </span>
 
                 </div>
 
             </a>
 
-            `).join("");
+            `;
+
+            }).join("");
 
             dropdown.innerHTML += `
 

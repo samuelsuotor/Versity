@@ -325,6 +325,7 @@ def search_api():
 
                 "title": project["title"],
                 "department": project["department"],
+                "technology": ", ".join(project.get("technology", [])[:2]),
                 "slug": project["slug"]
 
             })

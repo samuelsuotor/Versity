@@ -2460,6 +2460,20 @@ LIVE SEARCH
 
 }
 
+.search-content mark {
+
+    background: #DBEAFE;
+
+    color: var(--primary);
+
+    padding: 2px 4px;
+
+    border-radius: 4px;
+
+    font-weight: 700;
+
+}
+
 .search-content strong {
 
     display: block;
@@ -2513,6 +2527,43 @@ LIVE SEARCH
     background: #F8FAFC;
 
 }
+
+.search-loading {
+
+    padding: 18px;
+
+    text-align: center;
+
+    color: var(--muted);
+
+    font-size: .9rem;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
