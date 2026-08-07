@@ -325,7 +325,7 @@ body.menu-open {
 
     overflow: hidden;
 
-    padding: 65px 0 100px;
+    padding: 60px 0 100px;
 
     background:
 
@@ -936,6 +936,12 @@ body.menu-open {
 
 }
 
+.project-information {
+
+    gap: 28px;
+
+}
+
 .project-information h1 {
 
     font-family: 'Manrope';
@@ -967,6 +973,26 @@ body.menu-open {
     margin-bottom: .75rem;
 
     line-height: 1.6;
+
+}
+
+.project-meta {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+
+}
+
+.project-meta-item {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
 
 }
 
@@ -1233,7 +1259,7 @@ body.menu-open {
 
 .report-preview-section {
 
-    margin: 1.75rem 0;
+    margin: 0;
 
 }
 
@@ -1241,19 +1267,15 @@ body.menu-open {
 
     display: flex;
 
-    align-items: center;
+    gap: 20px;
 
-    gap: 2rem;
+    align-items: flex-start;
 
-    padding: 2rem;
+}
 
-    background: #ffffff;
+.report-preview-card .primary-btn {
 
-    border: 1px solid var(--border);
-
-    border-radius: 24px;
-
-    box-shadow: var(--shadow);
+    margin-top: 24px;
 
 }
 
@@ -1345,7 +1367,9 @@ body.menu-open {
 
     display: flex;
 
-    gap: .8rem;
+    gap: 12px;
+
+    margin-top: 18px;
 
     flex-wrap: wrap;
 
@@ -1353,19 +1377,25 @@ body.menu-open {
 
 .thumbnail-row img {
 
-    width: 80px;
+    width: 72px;
 
-    height: 80px;
+    height: 72px;
 
     object-fit: cover;
 
     border-radius: 12px;
 
-    cursor: pointer;
-
     border: 2px solid transparent;
 
-    transition: all .3s ease;
+    cursor: pointer;
+
+    transition: .25s ;
+
+}
+
+.thumbnail-row img:hover {
+
+    border-color: var(--primary);
 
 }
 
@@ -1631,6 +1661,634 @@ body.menu-open {
 
 }
 
+.project-header {
+    max-width: 900px;
+    margin: 0 auto 50px;
+    text-align: center;
+}
+
+.project-header h1 {
+    font-family: 'Manrope';
+    font-size: 48px;
+    margin-bottom: 18px;
+}
+
+.project-header p {
+    color: var(--muted);
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.project-details-layout {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 72px;
+
+    margin-top: 72px;
+
+}
+
+.details-row {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 32px;
+
+    align-items: start;
+
+}
+
+.details-card {
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: 22px;
+
+    box-shadow: var(--shadow);
+
+    padding: 32px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 24px;
+
+    align-self: start;
+
+    height: fit-content;
+
+}
+
+.gallery-card-large {
+
+    transform: scale(1.02);
+
+}
+
+.gallery-card-large .main-preview {
+
+    min-height: 420px;
+
+    object-fit: cover;
+
+}
+
+.details-card>h2 {
+
+    margin: 0;
+
+    font-family: 'Manrope', sans-serif;
+
+    font-size: 2rem;
+
+    line-height: 1.2;
+
+}
+
+.details-card>h3 {
+
+    margin: 0;
+
+    font-family: 'Manrope', sans-serif;
+
+}
+
+.details-card h2 {
+
+    margin: 0;
+
+    font-size: 30px;
+
+    font-family: 'Manrope';
+
+}
+
+.details-card h3 {
+
+    margin: 0;
+
+}
+
+.details-card p:last-child {
+
+    margin-bottom: 0;
+
+}
+
+.project-information-card {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.info-label {
+    font-size: .9rem;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+}
+
+
+/*===================================================
+    PROJECT DETAILS PAGE 2.0
+=====================================================*/
+
+ .project-details-page {
+
+    padding: 40px 0 100px;
+
+}
+
+.project-hero {
+
+    max-width: 760px;
+
+    margin: 0 auto 70px;
+
+    text-align: center;
+
+}
+
+.project-hero h1 {
+
+    font-family: 'Manrope', sans-serif;
+
+    font-size: 3.4rem;
+
+    line-height: 1.08;
+
+    margin-bottom: 20px;
+
+}
+
+.project-hero p {
+
+    color: var(--muted);
+
+    font-size: 1.15rem;
+
+    line-height: 1.8;
+
+    max-width: 700px;
+
+    margin: auto;
+
+}
+
+.project-gallery {
+
+    margin-bottom: 70px;
+
+}
+
+.preview-button {
+
+    display: inline-flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    height: 54px;
+
+    padding: 0 28px;
+
+    background: var(--primary);
+
+    color: #fff;
+
+    border: none;
+
+    border-radius: 14px;
+
+    font-weight: 700;
+
+    font-size: .95rem;
+
+    cursor: pointer;
+
+    transition: .3s;
+
+}
+
+.preview-button:hover {
+
+    background: var(--primary-dark);
+
+    transform: translateY(-2px);
+
+}
+
+.gallery-main {
+
+    border-radius: 28px;
+
+    overflow: hidden;
+
+    border: 1px solid var(--border);
+
+    box-shadow: var(--shadow);
+
+}
+
+.gallery-main img {
+
+    width: 100%;
+
+    display: block;
+
+    aspect-ratio: 16/9;
+
+    object-fit: cover;
+
+}
+
+.gallery-thumbnails {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 18px;
+
+    margin-top: 24px;
+
+    flex-wrap: wrap;
+
+}
+
+.gallery-thumb {
+
+    width: 92px;
+
+    height: 92px;
+
+    object-fit: cover;
+
+    border-radius: 16px;
+
+    border: 2px solid transparent;
+
+    cursor: pointer;
+
+    transition: .3s;
+
+}
+
+.gallery-thumb:hover {
+
+    border-color: var(--primary);
+
+    transform: translateY(-4px);
+
+}
+
+.project-grid {
+
+    display: grid;
+
+    grid-template-columns: 1fr 360px;
+
+    gap: 40px;
+
+    margin-bottom: 40px;
+
+}
+
+.card {
+
+    background: #fff;
+
+    border: 1px solid var(--border);
+
+    border-radius: 24px;
+
+    padding: 34px;
+
+    box-shadow: 0 8px 30px rgba(15, 23, 42, .04);
+
+}
+
+.card h2 {
+
+    font-family: 'Manrope';
+
+    font-size: 1.8rem;
+
+    margin-bottom: 28px;
+
+}
+
+.info-item {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+
+    margin-bottom: 24px;
+
+}
+
+.info-item span {
+
+    color: var(--muted);
+
+    font-size: .92rem;
+
+}
+
+.info-item strong {
+
+    font-size: 1.08rem;
+
+}
+
+.technology-tags {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+}
+
+.technology-tags span {
+
+    padding: 10px 18px;
+
+    background: #EFF6FF;
+
+    color: var(--primary);
+
+    border-radius: 999px;
+
+    font-size: .92rem;
+
+    font-weight: 600;
+
+}
+
+.purchase-card {
+
+    position: sticky;
+
+    top: 120px;
+
+}
+
+.purchase-price {
+
+    font-family: 'Manrope';
+
+    font-size: 3rem;
+
+    font-weight: 800;
+
+    color: var(--primary);
+
+    margin-bottom: 30px;
+
+}
+
+.purchase-list {
+
+    list-style: none;
+
+    padding: 0;
+
+    margin: 0 0 35px;
+
+}
+
+.purchase-list li {
+
+    margin-bottom: 14px;
+
+    color: var(--text);
+
+}
+
+.purchase-button {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    height: 58px;
+
+    background: var(--primary);
+
+    color: #fff;
+
+    border-radius: 16px;
+
+    text-decoration: none;
+
+    font-weight: 700;
+
+    transition: .3s;
+
+}
+
+.purchase-button:hover {
+
+    background: var(--primary-dark);
+
+}
+
+.related-projects {
+
+    margin-top: 80px;
+
+    padding-top: 20px;
+
+}
+
+.features-section {
+
+    text-align: center;
+
+    padding: 48px;
+
+}
+
+.feature-tags {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 14px;
+
+    margin-top: 30px;
+
+}
+
+.feature-tag {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 12px 18px;
+
+    background: #EFF6FF;
+
+    color: var(--primary);
+
+    border-radius: 999px;
+
+    font-weight: 600;
+
+    transition: .25s;
+
+}
+
+.feature-tag:hover {
+
+    background: var(--primary);
+
+    color: white;
+
+}
+
+.section-header {
+
+    text-align: center;
+
+    max-width: 700px;
+
+    margin: 0 auto 50px;
+
+}
+
+.section-header h2 {
+
+    font-family: 'Manrope';
+
+    font-size: 2.2rem;
+
+    margin-bottom: 16px;
+
+}
+
+.section-header p {
+
+    color: var(--muted);
+
+    font-size: 1.05rem;
+
+    line-height: 1.7;
+
+}
+
+.related-projects .projects-grid {
+
+    margin-top: 24px;
+
+}
+
+.preview-card {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+}
+
+.preview-icon {
+
+    width: 80px;
+
+    height: 80px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 2.5rem;
+
+    background: #EFF6FF;
+
+    border-radius: 20px;
+
+    margin-bottom: 24px;
+
+}
+
+.preview-card h2 {
+
+    margin-bottom: 14px;
+
+}
+
+.preview-card p {
+
+    max-width: 420px;
+
+    color: var(--muted);
+
+    line-height: 1.7;
+
+    margin-bottom: 24px;
+
+}
+
+.preview-highlights {
+
+    list-style: disc;
+
+    text-align: left;
+
+    margin-bottom: 30px;
+
+    color: var(--text);
+
+}
+
+.preview-highlights li {
+
+    margin-bottom: 8px;
+
+}
+
+
+
+
 
 
 
@@ -1753,6 +2411,12 @@ body.menu-open {
 
     }
 
+    .details-row {
+
+        grid-template-columns: 1fr;
+
+    }
+
 }
 
 /* ===========================================
@@ -1841,4 +2505,215 @@ body.menu-open {
 
     }
 
+    .details-row {
+    
+        grid-template-columns: 1fr;
+    
+        gap: 24px;
+    
+    }
+    
+    .project-information {
+    
+        order: 2;
+    
+    }
+    
+    .gallery-card {
+    
+        order: 1;
+    
+    }
+    
+    .includes-card {
+    
+        order: 3;
+    
+    }
+    
+    .features-card {
+    
+        order: 4;
+    
+    }
+    
+    .preview-card {
+    
+        order: 5;
+    
+    }
+    
+    .purchase-card {
+    
+        order: 6;
+    
+    }
+
+                .project-details-page {
+        
+                    padding: 24px 0 60px;
+        
+                }
+        
+                .project-hero {
+        
+                    margin-bottom: 40px;
+        
+                    padding: 0 10px;
+        
+                }
+        
+                .project-hero h1 {
+        
+                    font-size: 2.4rem;
+        
+                    line-height: 1.2;
+        
+                }
+        
+                .project-hero p {
+        
+                    font-size: 1rem;
+        
+                    margin-top: 18px;
+        
+                }
+        
+                /* Every two-column section becomes one column */
+        
+                .project-grid {
+        
+                    display: flex;
+        
+                    flex-direction: column;
+        
+                    gap: 24px;
+        
+                    margin-bottom: 24px;
+        
+                }
+        
+                /* Gallery first */
+        
+                .project-gallery {
+        
+                    margin-bottom: 30px;
+        
+                }
+        
+                .gallery-main {
+        
+                    border-radius: 18px;
+        
+                }
+        
+                .gallery-thumbnails {
+        
+                    justify-content: flex-start;
+        
+                    overflow-x: auto;
+        
+                    flex-wrap: nowrap;
+        
+                    padding-bottom: 8px;
+        
+                    gap: 12px;
+        
+                }
+        
+                .gallery-thumb {
+        
+                    flex: 0 0 72px;
+        
+                    width: 72px;
+        
+                    height: 72px;
+        
+                }
+        
+                /* Cards */
+        
+                .card {
+        
+                    padding: 24px;
+        
+                    border-radius: 18px;
+        
+                }
+        
+                .card h2 {
+        
+                    font-size: 1.5rem;
+        
+                    margin-bottom: 18px;
+        
+                }
+        
+                /* Purchase card shouldn't be sticky */
+        
+                .purchase-card {
+        
+                    position: static;
+        
+                }
+        
+                .purchase-price {
+        
+                    font-size: 2.3rem;
+        
+                }
+        
+                .purchase-button,
+        
+                .preview-button {
+        
+                    width: 100%;
+        
+                }
+        
+                /* Preview */
+        
+                .preview-card {
+        
+                    text-align: center;
+        
+                }
+        
+                .preview-highlights {
+        
+                    text-align: left;
+        
+                    width: 100%;
+        
+                }
+        
+                /* Features */
+        
+                .features-section {
+        
+                    padding: 28px 22px;
+        
+                }
+        
+                .feature-tags {
+        
+                    justify-content: flex-start;
+        
+                }
+        
+                /* Related Projects */
+        
+                .related-projects {
+        
+                    margin-top: 50px;
+        
+                }
+        
+                .section-header {
+        
+                    margin-bottom: 30px;
+        
+                }
+
 }
+

@@ -6,193 +6,242 @@
 
 {% block content %}
 
-
-<section class="project-details">
+<section class="project-details-page">
 
     <div class="container">
 
         {% include "partials/back-button.html" %}
 
-        <div class="details-grid">
+        <!-- ================= HERO ================= -->
 
-            <div class="project-gallery">
+        <header class="project-hero">
 
-                <img class="main-preview" id="mainPreview"
-                    src="{{ url_for('static', filename='images/' + project.software_images[0]) }}"
+            <h1>{{ project.title }}</h1>
+
+            <p>{{ project.description }}</p>
+
+        </header>
+
+        <!-- ================= GALLERY ================= -->
+
+        <section class="project-gallery">
+
+            <div class="gallery-main">
+
+                <img id="main-image"
+                    src="{{ url_for('static', filename='images/software/' ~ project.software_images[0]) }}"
                     alt="{{ project.title }}">
 
-                <div class="thumbnail-row">
-
-                    {% for image in project.software_images %}
-
-                    <img class="thumbnail {% if loop.first %}active{% endif %}"
-                        src="{{ url_for('static', filename='images/' + image) }}" alt="{{ project.title }}">
-
-                    {% endfor %}
-
-                </div>
             </div>
 
-            <div class="project-information">
+            <div class="gallery-thumbnails">
 
-                <span class="department-badge">
+                {% for image in project.software_images %}
 
-                    {{ project.department }}
+                <img class="gallery-thumb" src="{{ url_for('static', filename='images/software/' ~ image) }}"
+                    alt="{{ project.title }}">
 
-                </span>
+                {% endfor %}
 
-                <h1>
+            </div>
 
-                    {{ project.title }}
+        </section>
 
-                </h1>
+        <!-- ================= INFO + PURCHASE ================= -->
 
-                <p>
+        <section class="project-grid">
 
-                    {{ project.description }}
+            <article class="card information-card">
 
-                </p>
+                <h2>Project Information</h2>
 
-                <div class="technology-badges">
+                <div class="info-item">
 
-                    {% for technology in project.technology %}
+                    <span>Department</span>
 
-                    <span class="technology-badge">
-
-                        {{ technology }}
-
-                    </span>
-
-                    {% endfor %}
+                    <strong>{{ project.department }}</strong>
 
                 </div>
 
-                <h3 class="included-heading">
+                <div class="info-item">
 
-                    What's Included
+                    <span>Category</span>
 
-                </h3>
+                    <strong>{{ project.category }}</strong>
 
-                <ul class="purchase-list">
+                </div>
 
-                    {% for item in project.includes %}
+                <div class="info-item">
 
-                    {% if item.available %}
+                    <span>Status</span>
 
-                    <li>
+                    <strong>{{ project.status|title }}</strong>
 
-                        ✓ {{ item.label }}
+                </div>
 
-                    </li>
+                <div class="info-item">
 
-                    {% endif %}
+                    <span>Technologies</span>
 
-                    {% endfor %}
+                    <div class="technology-tags">
 
-                </ul>
+                        {% for tech in project.technology %}
 
-                <h3 class="included-heading">
+                        <span>{{ tech }}</span>
 
-                    Software Features
-
-                </h3>
-
-                <ul class="purchase-list">
-
-                    {% for feature in project.features %}
-
-                    <li>
-
-                        {{ feature }}
-
-                    </li>
-
-                    {% endfor %}
-
-                </ul>
-
-                <section class="report-preview-section">
-
-                    <div class="report-preview-card">
-
-                        <div class="report-preview-icon">
-
-                            📄
-
-                        </div>
-
-                        <div class="report-preview-content">
-
-                            <h3>
-
-                                Project Report Preview
-
-                            </h3>
-
-                            <p>
-
-                                Preview selected pages from the complete Microsoft Word project report before
-                                purchasing.
-
-                            </p>
-
-                            <ul class="report-preview-list">
-
-                                <li>Cover Page</li>
-
-                                <li>Table of Contents</li>
-
-                                <li>Chapter One Sample</li>
-
-                            </ul>
-
-                            <button class="primary-btn preview-report-btn" type="button">
-
-                                Preview Report
-
-                            </button>
-
-                        </div>
+                        {% endfor %}
 
                     </div>
 
-                </section>
+                </div>
 
-                <div class="purchase-box">
+            </article>
 
-                    <h3>
+            <aside class="card purchase-card">
 
-                        Ready to Purchase?
+                <h2>Purchase Project</h2>
 
-                    </h3>
+                <div class="purchase-price">
 
-                    <h2>
-
-                        ₦{{ "{:,}".format(project.price) }}
-
-                    </h2>
-
-                    <p>
-
-                        Purchase securely through WhatsApp.
-
-                    </p>
-
-                    <a href="https://wa.me/{{ whatsapp_number }}?text=Hello,%20I'm%20interested%20in%20purchasing%20{{ project.title }}"
-                        target="_blank" class="primary-btn">
-
-                        Purchase Project
-
-                    </a>
+                    ₦{{ "{:,.0f}".format(project.price) }}
 
                 </div>
 
+                <ul class="purchase-list">
+
+                    <li>✔ Complete Source Code</li>
+
+                    <li>✔ Chapter 1–5 Report</li>
+
+                    <li>✔ Database Files</li>
+
+                    <li>✔ Installation Guide</li>
+
+                </ul>
+
+                <a class="purchase-button"
+                    href="https://wa.me/{{ whatsapp_number }}?text=I'm interested in {{ project.title }}">
+
+                    Purchase via WhatsApp
+
+                </a>
+
+            </aside>
+
+        </section>
+
+        <!-- ================= INCLUDED + REPORT ================= -->
+
+        <section class="project-grid">
+
+            <article class="card included-card">
+
+                <h2>What's Included</h2>
+
+                <ul class="included-list">
+
+                    {% for item in project.includes %}
+
+                    <li>
+
+                        {% if item.available %}
+
+                        <span class="included-icon">✔</span>
+
+                        {% else %}
+
+                        <span class="included-icon unavailable">✖</span>
+
+                        {% endif %}
+
+                        {{ item.label }}
+
+                    </li>
+
+                    {% endfor %}
+
+                </ul>
+
+            </article>
+
+            <article class="card preview-card">
+
+                <div class="preview-icon">
+
+                    📄
+
+                </div>
+
+                <h2>Preview Report</h2>
+
+                <p>
+
+                    Preview selected pages from the complete Microsoft Word
+                    project documentation before purchasing.
+
+                </p>
+
+
+                <button class="preview-button" type="button" onclick="openPreviewModal()">
+
+                    Preview Report
+
+                </button>
+
+            </article>
+
+        </section>
+
+
+
+        <!-- ================= FEATURES ================= -->
+
+        <section class="card features-section">
+
+            <h2>Key Features</h2>
+
+            <div class="feature-tags">
+
+                {% for feature in project.features %}
+
+                <span class="feature-tag">
+
+                    ✔ {{ feature }}
+
+                </span>
+
+                {% endfor %}
+
             </div>
 
-        </div>
+        </section>
 
-    </div>
+        <!-- ================= RELATED PROJECTS ================= -->
 
-</section>
+        <section class="related-projects">
 
-{% endblock %}
+            <div class="section-header">
+
+                <h2>You May Also Like</h2>
+
+                <p>
+
+                    Explore similar premium academic projects.
+
+                </p>
+
+            </div>
+
+            <div class="projects-grid">
+
+                {% for related in related_projects[:4] %}
+
+                {% include "partials/project-card.html" %}
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+        {% endblock %}

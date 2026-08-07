@@ -215,10 +215,24 @@ def project_details(slug):
     if project is None:
         abort(404)
 
+    related_projects = [
+
+        p for p in featured_projects
+
+        if p["slug"] != project["slug"]
+
+    ][:4]
+
     return render_template(
+
         "project-details.html",
+
         project=project,
+
+        related_projects=related_projects,
+
         whatsapp_number=WHATSAPP_NUMBER
+
     )
 
 @app.route("/projects")
