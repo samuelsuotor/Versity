@@ -297,5 +297,39 @@ def all_projects():
 
     )
 
+@app.route("/search-api")
+def search_api():
+
+    query = request.args.get("q", "").strip().lower()
+
+    if not query:
+        return jsonify([])
+
+    results = []
+
+    for project in featured_projects:
+
+        technologies = " ".join(project.get("technology", []))
+
+        searchable = " ".join([
+            project.get("title", ""),
+            project.get("department", ""),
+            project.get("category", ""),
+            technologies,
+            project.get("description", "")
+        ]).lower()
+
+        if query in searchable:
+
+            results.append({
+
+                "title": project["title"],
+                "department": project["department"],
+                "slug": project["slug"]
+
+            })
+
+    return jsonify(results[:5])  # Limit to top 5 results
+
 if __name__ == "__main__":
     app.run(port=5000, host="0.0.0.0", debug=True)

@@ -2286,11 +2286,233 @@ body.menu-open {
 
 }
 
+/*==================================================
+VERSITY SEARCH COMPONENT
+==================================================*/
 
+.search-component {
 
+    width: 100%;
 
+    max-width: 720px;
 
+    margin: 0 auto;
 
+    position: relative;
+
+}
+
+.search-box {
+
+    display: flex;
+
+    align-items: center;
+
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    background: #fff;
+
+    border: 1px solid var(--border);
+
+    box-shadow: 0 10px 30px rgba(15, 23, 42, .06);
+
+}
+
+.search-box input {
+
+    flex: 1;
+
+    height: 60px;
+
+    border: none;
+
+    outline: none;
+
+    padding: 0 24px;
+
+    font-size: 1rem;
+
+    background: none;
+
+}
+
+.search-box button {
+
+    width: 140px;
+
+    height: 60px;
+
+    border: none;
+
+    background: var(--primary);
+
+    color: #fff;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: .3s;
+
+}
+
+.search-box button:hover {
+
+    background: var(--primary-dark);
+
+}
+
+/*==================================================
+LIVE SEARCH
+==================================================*/
+
+.hero-search {
+
+    position: relative;
+
+}
+
+.search-dropdown {
+
+    position: absolute;
+
+    top: calc(100% + 10px);
+
+    left: 0;
+
+    width: 100%;
+
+    background: #fff;
+
+    border-radius: 18px;
+
+    border: 1px solid rgba(0, 0, 0, .08);
+
+    box-shadow: 0 15px 35px rgba(0, 0, 0, .08);
+
+    overflow: hidden;
+
+    display: none;
+
+    z-index: 999;
+
+    max-height: 320px;
+
+    overflow-y: auto;
+
+}
+
+.search-item {
+
+    display: flex;
+
+    align-items:left;
+
+    text-align: left;
+
+    gap: 14px;
+
+    padding: 14px 18px;
+
+    text-decoration: none;
+
+    color: inherit;
+
+    transition: .25s;
+
+}
+
+.search-item:hover {
+
+    background: #F8FAFC;
+
+}
+
+.search-icon {
+
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 12px;
+
+    background: #EEF4FF;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: var(--primary);
+
+    font-size: 15px;
+
+    flex-shrink: 0;
+
+}
+
+.search-content {
+
+    flex: 1;
+
+}
+
+.search-content strong {
+
+    display: block;
+
+    font-size: .95rem;
+
+    margin-bottom: 4px;
+
+}
+
+.search-content span {
+
+    color: #6B7280;
+
+    font-size: .82rem;
+
+}
+
+.search-empty {
+
+    padding: 18px;
+
+    text-align: center;
+
+    color: #6B7280;
+
+}
+
+.search-view-all {
+
+    display: block;
+
+    padding: 16px;
+
+    text-align: center;
+
+    text-decoration: none;
+
+    color: var(--primary);
+
+    font-weight: 600;
+
+    border-top: 1px solid #ECECEC;
+
+    transition: .25s;
+
+}
+
+.search-view-all:hover {
+
+    background: #F8FAFC;
+
+}
 
 
 
