@@ -50,8 +50,7 @@
 
             <div class="gallery-main">
 
-                <img id="main-image"
-                    src="{{ url_for('static', filename='images/software/' ~ project.software_images[0]) }}"
+                <img id="main-image" src="{{ url_for('static', filename='images/' ~ project.software_images[0]) }}"
                     alt="{{ project.title }}">
 
             </div>
@@ -60,8 +59,8 @@
 
                 {% for image in project.software_images %}
 
-                <img class="gallery-thumb" src="{{ url_for('static', filename='images/software/' ~ image) }}"
-                    alt="{{ project.title }}">
+                <img class="gallery-thumb {% if loop.first %}active{% endif %}"
+                    src="{{ url_for('static', filename='images/' ~ image) }}" alt="{{ project.title }}">
 
                 {% endfor %}
 
@@ -265,5 +264,103 @@
             </div>
 
         </section>
+
+        <!-- ================= REPORT PREVIEW MODAL ================= -->
+
+        <div class="report-preview-modal" id="reportPreviewModal" aria-hidden="true">
+
+            <div class="report-preview-overlay" onclick="closePreviewModal()"></div>
+
+            <div class="report-preview-dialog" role="dialog" aria-modal="true" aria-labelledby="reportPreviewTitle">
+
+                <button type="button" class="report-preview-close" onclick="closePreviewModal()"
+                    aria-label="Close report preview">
+                    &times;
+                </button>
+
+                <div class="report-preview-header">
+
+                    <span class="report-preview-label">
+                        PROJECT REPORT PREVIEW
+                    </span>
+
+                    <h2 id="reportPreviewTitle">
+                        {{ project.title }}
+                    </h2>
+
+                    <p>
+                        Preview selected pages from the project documentation.
+                    </p>
+
+                </div>
+
+                <div class="report-preview-pages">
+
+                    {% for image in project.report_preview %}
+
+                    <div class="report-preview-page">
+
+                        <img src="{{ url_for(
+                                'static',
+                                filename='images/report-preview/' ~ image
+                            ) }}" alt="{{ project.title }} report preview">
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ================= REPORT PREVIEW MODAL ================= -->
+
+        <div class="report-preview-modal" id="reportPreviewModal">
+
+            <div class="report-preview-overlay" onclick="closePreviewModal()"></div>
+
+            <div class="report-preview-dialog">
+
+                <button type="button" class="report-preview-close" onclick="closePreviewModal()"
+                    aria-label="Close report preview">
+                    &times;
+                </button>
+
+                <div class="report-preview-header">
+
+                    <span class="report-preview-label">
+                        PROJECT REPORT PREVIEW
+                    </span>
+
+                    <h2>
+                        {{ project.title }}
+                    </h2>
+
+                    <p>
+                        Preview selected pages from the complete project documentation.
+                    </p>
+
+                </div>
+
+                <div class="report-preview-pages">
+
+                    {% for image in project.report_preview %}
+
+                    <div class="report-preview-page">
+
+                        <img src="{{ url_for('static', filename='images/' ~ image) }}"
+                            alt="{{ project.title }} report preview">
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        </div>
 
         {% endblock %}

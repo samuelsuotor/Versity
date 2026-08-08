@@ -1102,6 +1102,156 @@ body.menu-open {
   margin-bottom: 0.5rem;
 }
 
+/* ==========================================================
+   REPORT PREVIEW MODAL
+========================================================== */
+
+.report-preview-modal {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 9999;
+
+  display: none;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 24px;
+}
+
+.report-preview-modal.is-open {
+  display: flex;
+}
+
+.report-preview-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background: rgba(15, 23, 42, 0.72);
+
+  backdrop-filter: blur(6px);
+}
+
+.report-preview-dialog {
+  position: relative;
+
+  z-index: 1;
+
+  width: min(1000px, 100%);
+
+  max-height: 90vh;
+
+  overflow-y: auto;
+
+  padding: 32px;
+
+  background: #ffffff;
+
+  border-radius: 24px;
+
+  box-shadow: 0 30px 80px rgba(15, 23, 42, 0.25);
+}
+
+.report-preview-close {
+  position: absolute;
+
+  top: 18px;
+
+  right: 18px;
+
+  width: 42px;
+
+  height: 42px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border: 1px solid var(--border);
+
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  color: var(--text);
+
+  font-size: 26px;
+
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+.report-preview-header {
+  padding-right: 54px;
+
+  margin-bottom: 28px;
+}
+
+.report-preview-label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: var(--primary);
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+}
+
+.report-preview-header h2 {
+  margin: 0 0 8px;
+
+  font-family: "Manrope", sans-serif;
+
+  font-size: 28px;
+}
+
+.report-preview-header p {
+  margin: 0;
+
+  color: var(--muted);
+}
+
+.report-preview-pages {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 20px;
+}
+
+.report-preview-page {
+  overflow: hidden;
+
+  border: 1px solid var(--border);
+
+  border-radius: 16px;
+
+  background: #f8fafc;
+}
+
+.report-preview-page img {
+  display: block;
+
+  width: 100%;
+
+  height: auto;
+}
+
+body.preview-modal-open {
+  overflow: hidden;
+}
+
 /* ==========================
    Project Gallery
 ========================== */
@@ -2503,6 +2653,65 @@ DISCOVER SECTION
 }
 
 /* ==========================================================
+   PROJECT DETAIL GALLERY
+========================================================== */
+
+.project-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.gallery-main {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 24px;
+  background: #f7f7f8;
+  border: 1px solid var(--border);
+}
+
+.gallery-main img {
+  display: block;
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  transition: opacity 0.2s ease;
+}
+
+.gallery-thumbnails {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 2px 2px 6px;
+  scrollbar-width: thin;
+}
+
+.gallery-thumb {
+  width: 84px;
+  height: 64px;
+  flex: 0 0 84px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  opacity: 0.72;
+  transition:
+    opacity 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.gallery-thumb:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.gallery-thumb.active {
+  opacity: 1;
+  border-color: #2563eb;
+}
+
+/* ==========================================================
    PROJECT FILTER BAR — TABLET
 ========================================================== */
 
@@ -2910,6 +3119,47 @@ DISCOVER SECTION
     flex-wrap: wrap;
 
     row-gap: 6px;
+  }
+
+  .gallery-main {
+    border-radius: 18px;
+  }
+
+  .gallery-main img {
+    height: 320px;
+  }
+
+  .gallery-thumbnails {
+    gap: 10px;
+  }
+
+  .gallery-thumb {
+    width: 72px;
+    height: 56px;
+    flex-basis: 72px;
+    border-radius: 10px;
+  }
+
+  .report-preview-modal {
+    padding: 12px;
+  }
+
+  .report-preview-dialog {
+    max-height: 94vh;
+
+    padding: 22px;
+
+    border-radius: 20px;
+  }
+
+  .report-preview-pages {
+    grid-template-columns: 1fr;
+
+    gap: 14px;
+  }
+
+  .report-preview-header h2 {
+    font-size: 21px;
   }
 }
 
