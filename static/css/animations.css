@@ -1,17 +1,13 @@
-.fade{
+.fade {
+  opacity: 0;
 
-opacity:0;
+  transform: translateY(20px);
 
-transform:translateY(20px);
-
-transition:.5s;
-
+  transition: 0.5s;
 }
 
-.fade.show{
+.fade.show {
+  opacity: 1;
 
-opacity:1;
-
-transform:none;
-
+  transform: none;
 }

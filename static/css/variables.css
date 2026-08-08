@@ -1,45 +1,41 @@
-:root{
+:root {
+  --primary: #2563eb;
 
---primary:#2563EB;
+  --primary-dark: #1d4ed8;
 
---primary-dark:#1D4ED8;
+  --background: #ffffff;
 
---background:#FFFFFF;
+  --surface: #f8fafc;
 
---surface:#F8FAFC;
+  --text: #111827;
 
---text:#111827;
+  --muted: #6b7280;
 
---muted:#6B7280;
+  --border: #e5e7eb;
 
---border:#E5E7EB;
+  --radius: 18px;
 
---radius:18px;
+  --shadow: 0 12px 40px rgba(15, 23, 42, 0.08);
 
---shadow:
+  --transition: 0.3s ease;
 
-0 12px 40px rgba(15,23,42,.08);
+  --max-width: 1280px;
 
---transition:.3s ease;
+  --hero-width: 760px;
 
---max-width:1280px;
+  --gradient-start: #ffffff;
 
---hero-width:760px;
+  --gradient-middle: #eff6ff;
 
---gradient-start:#ffffff;
+  --gradient-end: #ffffff;
 
---gradient-middle:#eff6ff;
+  --section-spacing: 120px;
 
---gradient-end:#ffffff;
+  --button-height: 56px;
 
---section-spacing:120px;
+  --input-height: 60px;
 
---button-height:56px;
+  --hero-title: 72px;
 
---input-height:60px;
-
---hero-title:72px;
-
---hero-mobile-title:42px;
-
+  --hero-mobile-title: 42px;
 }

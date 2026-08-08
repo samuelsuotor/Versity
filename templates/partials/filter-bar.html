@@ -1,0 +1,160 @@
+<section class="discover-section">
+
+    <div class="discover-header">
+
+        <h1>Discover Projects</h1>
+
+        <p>
+            Explore premium final-year projects carefully prepared for your
+            department, technology stack and academic requirements.
+        </p>
+
+    </div>
+
+    <div class="discover-search">
+
+        <form class="hero-search" method="GET" action="{{ url_for('all_projects') }}">
+
+            <input type="text" name="search" placeholder="Search by project title, department or technology..."
+                value="{{ current_search }}">
+
+            <button type="submit">
+                Search
+            </button>
+
+        </form>
+
+    </div>
+
+    <form class="discover-filter-row" method="GET" action="{{ url_for('all_projects') }}">
+
+        <!-- Preserve the search when using filters -->
+
+        <input type="hidden" name="search" value="{{ current_search }}">
+
+        <div class="filter-group">
+
+            <!-- DEPARTMENT -->
+
+            <select name="department">
+
+                <option value="">
+                    Department
+                </option>
+
+                {% for department in filter_departments %}
+
+                <option value="{{ department }}" {% if current_department==department %}selected{% endif %}>
+                    {{ department }}
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+
+            <!-- CATEGORY -->
+
+            <select name="category">
+
+                <option value="">
+                    Category
+                </option>
+
+                {% for category in filter_categories %}
+
+                <option value="{{ category }}" {% if current_category==category %}selected{% endif %}>
+                    {{ category }}
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+
+            <!-- TECHNOLOGY -->
+
+            <select name="technology">
+
+                <option value="">
+                    Technology
+                </option>
+
+                {% for technology in filter_technologies %}
+
+                <option value="{{ technology }}" {% if current_technology==technology %}selected{% endif %}>
+                    {{ technology }}
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+
+            <!-- PRICE -->
+
+            <select name="price">
+
+                <option value="">
+                    Price
+                </option>
+
+                <option value="under_10000" {% if current_price=="under_10000" %}selected{% endif %}>
+                    Under ₦10,000
+                </option>
+
+                <option value="10000_20000" {% if current_price=="10000_20000" %}selected{% endif %}>
+                    ₦10,000 – ₦20,000
+                </option>
+
+                <option value="above_20000" {% if current_price=="above_20000" %}selected{% endif %}>
+                    Above ₦20,000
+                </option>
+
+            </select>
+
+
+            <!-- SORT -->
+
+            <select name="sort">
+
+                <option value="default" {% if current_sort=="default" %}selected{% endif %}>
+                    Default
+                </option>
+
+                <option value="az" {% if current_sort=="az" %}selected{% endif %}>
+                    Alphabetical (A–Z)
+                </option>
+
+                <option value="department" {% if current_sort=="department" %}selected{% endif %}>
+                    Department
+                </option>
+
+                <option value="price_low" {% if current_sort=="price_low" %}selected{% endif %}>
+                    Price (Low → High)
+                </option>
+
+                <option value="price_high" {% if current_sort=="price_high" %}selected{% endif %}>
+                    Price (High → Low)
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="filter-actions">
+
+            <button type="submit" class="apply-filter-btn">
+                Apply Filters
+            </button>
+
+            <a href="{{ url_for('all_projects') }}" class="reset-filter-btn">
+                Reset Filters
+            </a>
+
+        </div>
+
+    </form>
+
+</section>

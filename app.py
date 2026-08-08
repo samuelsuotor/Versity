@@ -238,48 +238,319 @@ def project_details(slug):
 @app.route("/projects")
 def all_projects():
 
-    sort = request.args.get("sort", "default")
+    # ==================================================
+    # GET FILTER VALUES FROM URL
+    # ==================================================
+
+    search = request.args.get("search", "").strip()
+
+    department = request.args.get("department", "").strip()
+
+    category = request.args.get("category", "").strip()
+
+    technology = request.args.get("technology", "").strip()
+
+    price = request.args.get("price", "").strip()
+
+    sort = request.args.get("sort", "default").strip()
 
     page = request.args.get("page", 1, type=int)
 
+    reset = request.args.get("reset", "").strip()
+
+
+    # ==================================================
+    # RESET FILTERS
+    # ==================================================
+
+    if reset:
+
+        search = ""
+
+        department = ""
+
+        category = ""
+
+        technology = ""
+
+        price = ""
+
+        sort = "default"
+
+        page = 1
+
+
+    # ==================================================
+    # START WITH COMPLETE PROJECT CATALOG
+    # ==================================================
+
     projects = project_catalog.copy()
+
+
+    # ==================================================
+    # SEARCH FILTER
+    # ==================================================
+
+    if search:
+
+        search_lower = search.lower()
+
+        projects = [
+
+            project
+
+            for project in projects
+
+            if (
+
+                search_lower in project.get("title", "").lower()
+
+                or search_lower in project.get("department", "").lower()
+
+                or search_lower in project.get("category", "").lower()
+
+                or any(
+
+                    search_lower in technology_name.lower()
+
+                    for technology_name
+                    in project.get("technology", [])
+
+                )
+
+            )
+
+        ]
+
+
+    # ==================================================
+    # DEPARTMENT FILTER
+    # ==================================================
+
+    if department:
+
+        projects = [
+
+            project
+
+            for project in projects
+
+            if project.get("department", "").lower()
+            == department.lower()
+
+        ]
+
+
+    # ==================================================
+    # CATEGORY FILTER
+    # ==================================================
+
+    if category:
+
+        projects = [
+
+            project
+
+            for project in projects
+
+            if project.get("category", "").lower()
+            == category.lower()
+
+        ]
+
+
+    # ==================================================
+    # TECHNOLOGY FILTER
+    # ==================================================
+
+    if technology:
+
+        projects = [
+
+            project
+
+            for project in projects
+
+            if any(
+
+                technology.lower()
+                == technology_name.lower()
+
+                for technology_name
+                in project.get("technology", [])
+
+            )
+
+        ]
+
+
+    # ==================================================
+    # PRICE FILTER
+    # ==================================================
+
+    if price == "under_10000":
+
+        projects = [
+
+            project
+
+            for project in projects
+
+            if project.get("price", 0) < 10000
+
+        ]
+
+    elif price == "10000_20000":
+
+        projects = [
+
+            project
+
+            for project in projects
+
+            if 10000 <= project.get("price", 0) <= 20000
+
+        ]
+
+    elif price == "above_20000":
+
+        projects = [
+
+            project
+
+            for project in projects
+
+            if project.get("price", 0) > 20000
+
+        ]
+
+
+    # ==================================================
+    # SORTING
+    # ==================================================
 
     if sort == "az":
 
         projects.sort(
-            key=lambda project: project["title"]
+
+            key=lambda project:
+            project.get("title", "").lower()
+
         )
 
     elif sort == "department":
 
         projects.sort(
-            key=lambda project: project["department"]
+
+            key=lambda project:
+            project.get("department", "").lower()
+
         )
 
     elif sort == "price_low":
 
         projects.sort(
-            key=lambda project: project["price"]
+
+            key=lambda project:
+            project.get("price", 0)
+
         )
 
     elif sort == "price_high":
 
         projects.sort(
-            key=lambda project: project["price"],
+
+            key=lambda project:
+            project.get("price", 0),
+
             reverse=True
+
         )
+
+
+    # ==================================================
+    # BUILD DYNAMIC FILTER OPTIONS
+    # ==================================================
+
+    filter_departments = sorted({
+
+        project.get("department")
+
+        for project in project_catalog
+
+        if project.get("department")
+
+    })
+
+
+    filter_categories = sorted({
+
+        project.get("category")
+
+        for project in project_catalog
+
+        if project.get("category")
+
+    })
+
+
+    filter_technologies = sorted({
+
+        technology_name
+
+        for project in project_catalog
+
+        for technology_name
+        in project.get("technology", [])
+
+        if technology_name
+
+    })
+
+
+    # ==================================================
+    # PAGINATION
+    # ==================================================
 
     total_projects = len(projects)
 
     total_pages = (
-        total_projects + PROJECTS_PER_PAGE - 1
+
+        total_projects
+        + PROJECTS_PER_PAGE
+        - 1
+
     ) // PROJECTS_PER_PAGE
+
+
+    # Make sure there is always at least one page
+
+    if total_pages == 0:
+
+        total_pages = 1
+
+
+    # Prevent invalid page numbers
+
+    if page < 1:
+
+        page = 1
+
+    if page > total_pages:
+
+        page = total_pages
+
 
     start = (page - 1) * PROJECTS_PER_PAGE
 
     end = start + PROJECTS_PER_PAGE
 
     paginated_projects = projects[start:end]
+
+
+    # ==================================================
+    # SEND DATA TO TEMPLATE
+    # ==================================================
 
     return render_template(
 
@@ -292,6 +563,24 @@ def all_projects():
         current_page=page,
 
         total_pages=total_pages,
+
+        total_projects=total_projects,
+
+        current_search=search,
+
+        current_department=department,
+
+        current_category=category,
+
+        current_technology=technology,
+
+        current_price=price,
+
+        filter_departments=filter_departments,
+
+        filter_categories=filter_categories,
+
+        filter_technologies=filter_technologies,
 
         whatsapp_number=WHATSAPP_NUMBER
 

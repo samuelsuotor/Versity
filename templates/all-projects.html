@@ -12,81 +12,134 @@ Browse All Projects
 
         {% include "partials/back-button.html" %}
 
-        <div class="search-header">
-
-            <h1>
-
-                Browse All Projects
-
-            </h1>
-
-            <p>
-
-                Explore every completed project currently available on Versity.
-
-            </p>
-
-        </div>
-
-        <form class="hero-search" method="GET" action="{{ url_for('search_projects') }}">
-
-            <input type="text" name="search" placeholder="Search projects...">
-
-            <button type="submit">
-
-                Search
-
-            </button>
-
-        </form>
+        {% include "partials/filter-bar.html" %}
 
         <div class="projects-toolbar">
 
-            <div class="projects-count">
+            <div class="projects-result-summary">
 
-                {{ featured_projects|length }}
+                <div class="projects-count">
 
-                Project{% if featured_projects|length != 1 %}s{% endif %}
+                    {{ total_projects }}
+
+                    Project{% if total_projects != 1 %}s{% endif %}
+
+                </div>
+
+
+                {% if current_search or current_department or current_category or current_technology or current_price %}
+
+                <div class="active-filters">
+
+                    {% if current_search %}
+
+                    <span class="active-filter">
+
+                        Search: "{{ current_search }}"
+
+                    </span>
+
+                    {% endif %}
+
+
+                    {% if current_department %}
+
+                    <span class="active-filter">
+
+                        {{ current_department }}
+
+                    </span>
+
+                    {% endif %}
+
+
+                    {% if current_category %}
+
+                    <span class="active-filter">
+
+                        {{ current_category }}
+
+                    </span>
+
+                    {% endif %}
+
+
+                    {% if current_technology %}
+
+                    <span class="active-filter">
+
+                        {{ current_technology }}
+
+                    </span>
+
+                    {% endif %}
+
+
+                    {% if current_price %}
+
+                    <span class="active-filter">
+
+                        {% if current_price == "under_10000" %}
+
+                        Under ₦10,000
+
+                        {% elif current_price == "10000_20000" %}
+
+                        ₦10,000 – ₦20,000
+
+                        {% elif current_price == "above_20000" %}
+
+                        Above ₦20,000
+
+                        {% endif %}
+
+                    </span>
+
+                    {% endif %}
+
+                </div>
+
+                {% endif %}
 
             </div>
-
-            <form method="GET" action="{{ url_for('all_projects') }}">
-
-                <select name="sort" onchange="this.form.submit()">
-
-                    <option value="default" {% if current_sort=="default" %}selected{% endif %}>
-                        Default
-                    </option>
-
-                    <option value="az" {% if current_sort=="az" %}selected{% endif %}>
-                        Alphabetical (A–Z)
-                    </option>
-
-                    <option value="department" {% if current_sort=="department" %}selected{% endif %}>
-                        Department
-                    </option>
-
-                    <option value="price_low" {% if current_sort=="price_low" %}selected{% endif %}>
-                        Price (Low → High)
-                    </option>
-
-                    <option value="price_high" {% if current_sort=="price_high" %}selected{% endif %}>
-                        Price (High → Low)
-                    </option>
-
-                </select>
-
-            </form>
 
         </div>
 
         <div class="projects-grid">
+
+            {% if featured_projects %}
 
             {% for project in featured_projects %}
 
             {% include "partials/project-card.html" %}
 
             {% endfor %}
+
+            {% else %}
+
+            <div class="empty-search-state">
+
+                <div class="empty-search-icon">
+                    🔎
+                </div>
+
+                <h3>
+                    No Projects Found
+                </h3>
+
+                <p>
+                    We couldn't find any projects matching your current
+                    search or filter selections. Try changing your filters
+                    or clearing them to see more projects.
+                </p>
+
+                <a href="{{ url_for('all_projects') }}" class="primary-btn">
+                    Clear Filters
+                </a>
+
+            </div>
+
+            {% endif %}
 
         </div>
 
@@ -96,43 +149,51 @@ Browse All Projects
 
             {% if current_page > 1 %}
 
-            <a class="pagination-btn" href="{{ url_for('all_projects',
-                        page=current_page-1,
-                        sort=current_sort) }}">
-
+            <a class="pagination-btn" href="{{ url_for(
+                    'all_projects',
+                    page=current_page - 1,
+                    search=current_search,
+                    department=current_department,
+                    category=current_category,
+                    technology=current_technology,
+                    price=current_price,
+                    sort=current_sort
+                ) }}">
                 ← Prev
-
             </a>
 
             {% endif %}
+
 
             {% for page_number in range(1, total_pages + 1) %}
 
-            {% if page_number == current_page %}
-
-            <span class="pagination-number active">
-
+            <a class="pagination-btn {% if page_number == current_page %}active{% endif %}" href="{{ url_for(
+                    'all_projects',
+                    page=page_number,
+                    search=current_search,
+                    department=current_department,
+                    category=current_category,
+                    technology=current_technology,
+                    price=current_price,
+                    sort=current_sort
+                ) }}">
                 {{ page_number }}
-
-            </span>
-
-            {% else %}
-
-            <a class="pagination-number" href="{{ url_for('all_projects', page=page_number, sort=current_sort) }}">
-
-                {{ page_number }}
-
             </a>
-
-            {% endif %}
 
             {% endfor %}
 
-            {% if current_page < total_pages %} <a class="pagination-btn"
-                href="{{ url_for('all_projects', page=current_page+1, sort=current_sort) }}">
 
+            {% if current_page < total_pages %} <a class="pagination-btn" href="{{ url_for(
+                    'all_projects',
+                    page=current_page + 1,
+                    search=current_search,
+                    department=current_department,
+                    category=current_category,
+                    technology=current_technology,
+                    price=current_price,
+                    sort=current_sort
+                ) }}">
                 Next →
-
                 </a>
 
                 {% endif %}
@@ -141,8 +202,4 @@ Browse All Projects
 
         {% endif %}
 
-    </div>
-
-</section>
-
-{% endblock %}
+        {% endblock %}
