@@ -16,9 +16,31 @@
 
         <header class="project-hero">
 
-            <h1>{{ project.title }}</h1>
+            <div class="project-hero-content">
 
-            <p>{{ project.description }}</p>
+                <span class="project-hero-label">
+                    {{ project.category }}
+                </span>
+
+                <h1>{{ project.title }}</h1>
+
+                <p>{{ project.description }}</p>
+
+                <div class="project-hero-meta">
+
+                    <span>
+                        {{ project.department }}
+                    </span>
+
+                    <span>•</span>
+
+                    <span>
+                        {{ project.status|title }}
+                    </span>
+
+                </div>
+
+            </div>
 
         </header>
 

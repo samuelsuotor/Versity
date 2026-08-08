@@ -2449,6 +2449,60 @@ DISCOVER SECTION
 }
 
 /* ==========================================================
+   PROJECT DETAIL HERO
+========================================================== */
+
+.project-hero-content {
+  max-width: 850px;
+
+  margin: 0 auto;
+
+  text-align: center;
+}
+
+.project-hero-label {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin-bottom: 16px;
+
+  padding: 7px 14px;
+
+  border-radius: 999px;
+
+  background: rgba(37, 99, 235, 0.08);
+
+  color: #2563eb;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.02em;
+}
+
+.project-hero-meta {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  margin-top: 20px;
+
+  color: var(--muted);
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+/* ==========================================================
    PROJECT FILTER BAR — TABLET
 ========================================================== */
 
@@ -2846,6 +2900,16 @@ DISCOVER SECTION
 
   .active-filters {
     width: 100%;
+  }
+
+  .project-hero-content {
+    max-width: 100%;
+  }
+
+  .project-hero-meta {
+    flex-wrap: wrap;
+
+    row-gap: 6px;
   }
 }
 
