@@ -257,6 +257,8 @@
 
                 {% for related in related_projects[:4] %}
 
+                {% set project = related %}
+
                 {% include "partials/project-card.html" %}
 
                 {% endfor %}

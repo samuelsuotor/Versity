@@ -2712,6 +2712,78 @@ DISCOVER SECTION
 }
 
 /* ==========================================================
+   PROJECT DETAILS — LAYOUT REFINEMENT
+   Keep existing gallery, buttons and modal untouched.
+========================================================== */
+
+.project-grid {
+  align-items: stretch;
+  gap: 24px;
+}
+
+.project-grid > .card {
+  height: 100%;
+}
+
+/* Information + Purchase row */
+.information-card,
+.purchase-card {
+  min-height: 100%;
+}
+
+/* Included + Report Preview row */
+.included-card,
+.preview-card {
+  min-height: 100%;
+}
+
+/* Give the lower cards consistent internal rhythm */
+.included-card,
+.preview-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.included-card .included-list {
+  margin-top: 4px;
+}
+
+.preview-card {
+  align-items: flex-start;
+}
+
+.preview-card .preview-icon {
+  margin-bottom: 16px;
+}
+
+.preview-card p {
+  max-width: 560px;
+}
+
+/* Keep the preview button at a natural, consistent position */
+.preview-card .preview-button {
+  margin-top: auto;
+}
+
+/* Key Features spacing */
+.features-section {
+  margin-top: 24px;
+}
+
+.features-section h2 {
+  margin-bottom: 18px;
+}
+
+/* Related projects spacing */
+.related-projects {
+  margin-top: 36px;
+}
+
+.related-projects .section-header {
+  margin-bottom: 20px;
+}
+
+/* ==========================================================
    PROJECT FILTER BAR — TABLET
 ========================================================== */
 
@@ -3126,7 +3198,10 @@ DISCOVER SECTION
   }
 
   .gallery-main img {
-    height: 320px;
+    height: auto;
+    aspect-ratio: auto;
+    object-fit: contain;
+    background: #f7f7f8;
   }
 
   .gallery-thumbnails {
@@ -3160,6 +3235,22 @@ DISCOVER SECTION
 
   .report-preview-header h2 {
     font-size: 21px;
+  }
+
+  .project-grid {
+    gap: 18px;
+  }
+
+  .features-section {
+    margin-top: 18px;
+  }
+
+  .related-projects {
+    margin-top: 28px;
+  }
+
+  .preview-card .preview-button {
+    margin-top: 18px;
   }
 }
 
