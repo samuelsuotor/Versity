@@ -140,11 +140,15 @@
 
                 </ul>
 
-                <a class="purchase-button"
-                    href="https://wa.me/{{ whatsapp_number }}?text=I'm interested in {{ project.title }}">
-
+                <a class="purchase-button" href="https://wa.me/{{ whatsapp_number }}?text={{ (
+                        'Hello, I am interested in purchasing the ' ~ project.title ~ ' from Versity.\n\n'
+                        ~ 'Project: ' ~ project.title ~ '\n'
+                        ~ 'Department: ' ~ project.department ~ '\n'
+                        ~ 'Category: ' ~ project.category ~ '\n'
+                        ~ 'Price: ₦' ~ " {:,.0f}".format(project.price) ~ '\n\n'
+                    ~ 'I would like to proceed with the purchase.' ) | urlencode }}" target="_blank"
+                    rel="noopener noreferrer">
                     Purchase via WhatsApp
-
                 </a>
 
             </aside>
