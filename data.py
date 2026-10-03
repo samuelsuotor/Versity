@@ -21,11 +21,11 @@ featured_projects = [
             "fuel-price-3.jpg",
             "fuel-price-4.jpg"
         ],
-        "report_preview": [
-            "fuel-report-cover.jpg",
-            "fuel-report-contents.jpg",
-            "fuel-report-chapter1-1.jpg",
-            "fuel-report-chapter1-2.jpg"
+        "report_preview_images": [
+            "fuel-price-1.png",
+            "fuel-price-2.jpg",
+            "fuel-price-3.jpg",
+            "fuel-price-4.jpg"
             ],
         "description": "An intelligent system that predicts future fuel prices using historical data and machine learning techniques.",
         "includes": [
@@ -90,11 +90,11 @@ featured_projects = [
             "complaint-maintenance-3.jpg",
             "complaint-maintenance-4.jpg"
         ],
-        "report_preview": [
-            "complaint-report-cover.jpg",
-            "complaint-report-contents.jpg",
-            "complaint-report-chapter1-1.jpg",
-            "complaint-report-chapter1-2.jpg"
+        "report_preview_images": [
+            "complaint-maintenance-1.webp",
+            "complaint-maintenance-2.jpg",
+            "complaint-maintenance-3.jpg",
+            "complaint-maintenance-4.jpg"
         ],
         "description": "A comprehensive system for tracking complaints and maintenance requests in real-time.",
         "features": [
@@ -141,11 +141,11 @@ featured_projects = [
             "digital-queue-3.jpg",
             "digital-queue-4.jpg"
         ],
-        "report_preview": [
-            "digital-queue-report-cover.jpg",
-            "digital-queue-report-contents.jpg",
-            "digital-queue-report-chapter1-1.jpg",
-            "digital-queue-report-chapter1-2.jpg"
+        "report_preview_images": [
+            "digital-queue-1.webp",
+            "digital-queue-2.jpg",
+            "digital-queue-3.jpg",
+            "digital-queue-4.jpg"
         ],
         "description": "A modern solution for managing queues in various settings.",
         "features": [
@@ -192,11 +192,11 @@ featured_projects = [
             "student-marketplace-3.jpg",
             "student-marketplace-4.jpg"
         ],
-        "report_preview": [
-            "student-marketplace-report-cover.jpg",
-            "student-marketplace-report-contents.jpg",
-            "student-marketplace-report-chapter1-1.jpg",
-            "student-marketplace-report-chapter1-2.jpg"
+        "report_preview_images": [
+            "student-marketplace-1.png",
+            "student-marketplace-2.jpg",
+            "student-marketplace-3.jpg",
+            "student-marketplace-4.jpg"
         ],
         "description": "A platform for students to buy and sell used textbooks and supplies.",
         "features": [
@@ -212,6 +212,7 @@ featured_projects = [
 # --------------------------------------------------
 # Development Seed Projects
 # Remove before production
+
 # --------------------------------------------------
 
 demo_projects = []

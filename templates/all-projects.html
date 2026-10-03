@@ -105,9 +105,23 @@ Browse All Projects
 
         </div>
 
-        <div class="projects-grid">
+        {% if featured_projects %}
 
-            {% if featured_projects %}
+        <div class="results-count">
+
+            {% if featured_projects|length == 1 %}
+
+            1 Project Found
+
+            {% else %}
+
+            {{ featured_projects|length }} Projects Found
+
+            {% endif %}
+
+        </div>
+
+        <div class="projects-grid">
 
             {% for project in featured_projects %}
 
@@ -115,33 +129,33 @@ Browse All Projects
 
             {% endfor %}
 
-            {% else %}
+        </div>
 
-            <div class="empty-search-state">
+        {% else %}
 
-                <div class="empty-search-icon">
-                    🔎
-                </div>
+        <div class="empty-search-state">
 
-                <h3>
-                    No Projects Found
-                </h3>
-
-                <p>
-                    We couldn't find any projects matching your current
-                    search or filter selections. Try changing your filters
-                    or clearing them to see more projects.
-                </p>
-
-                <a href="{{ url_for('all_projects') }}" class="primary-btn">
-                    Clear Filters
-                </a>
-
+            <div class="empty-search-icon">
+                🔎
             </div>
 
-            {% endif %}
+            <h3>
+                No Projects Found
+            </h3>
+
+            <p>
+                We couldn't find any projects matching your current
+                search or filter selections. Try changing your filters
+                or clearing them to see more projects.
+            </p>
+
+            <a href="{{ url_for('all_projects') }}" class="primary-btn">
+                Clear Filters
+            </a>
 
         </div>
+
+        {% endif %}
 
         {% if total_pages > 1 %}
 

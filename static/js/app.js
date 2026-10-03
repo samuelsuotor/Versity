@@ -38,6 +38,38 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ==========================================
+  //          Report Preview Gallery
+  // ==========================================
+
+  const reportPreviewMainImage = document.getElementById(
+    "reportPreviewMainImage",
+  );
+
+  const reportPreviewThumbnails = document.querySelectorAll(
+    ".report-preview-thumbnail",
+  );
+
+  if (reportPreviewMainImage && reportPreviewThumbnails.length > 0) {
+    reportPreviewThumbnails.forEach((thumbnail) => {
+      thumbnail.addEventListener("click", () => {
+        const imageSource = thumbnail.dataset.image;
+
+        if (!imageSource) {
+          return;
+        }
+
+        reportPreviewMainImage.src = imageSource;
+
+        reportPreviewThumbnails.forEach((image) => {
+          image.classList.remove("active");
+        });
+
+        thumbnail.classList.add("active");
+      });
+    });
+  }
+
+  // ==========================================
   //              Mobile Navigation
   // ==========================================
 
@@ -116,32 +148,52 @@ if (backButton) {
 //          Report Preview Modal
 // ==========================================
 
+let previewTrigger = null;
+
 function openPreviewModal() {
-  const modal = document.getElementById("reportPreviewModal");
+  function openPreviewModal() {
+    const modal = document.getElementById("reportPreviewModal");
 
-  if (!modal) {
-    return;
+    if (!modal) {
+      return;
+    }
+
+    previewTrigger = document.activeElement;
+
+    modal.removeAttribute("inert");
+    modal.setAttribute("aria-hidden", "false");
+    modal.classList.add("is-open");
+
+    document.body.classList.add("preview-modal-open");
+
+    const closeButton = modal.querySelector(".report-preview-close");
+
+    if (closeButton) {
+      closeButton.focus();
+    }
   }
 
-  modal.classList.add("is-open");
+  function closePreviewModal() {
+    const modal = document.getElementById("reportPreviewModal");
 
-  document.body.classList.add("preview-modal-open");
+    if (!modal) {
+      return;
+    }
+
+    if (modal.contains(document.activeElement)) {
+      document.activeElement.blur();
+    }
+
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    modal.setAttribute("inert", "");
+
+    document.body.classList.remove("preview-modal-open");
+
+    if (previewTrigger && typeof previewTrigger.focus === "function") {
+      previewTrigger.focus();
+    }
+
+    previewTrigger = null;
+  }
 }
-
-function closePreviewModal() {
-  const modal = document.getElementById("reportPreviewModal");
-
-  if (!modal) {
-    return;
-  }
-
-  modal.classList.remove("is-open");
-
-  document.body.classList.remove("preview-modal-open");
-}
-
-document.addEventListener("keydown", function (event) {
-  if (event.key === "Escape") {
-    closePreviewModal();
-  }
-});

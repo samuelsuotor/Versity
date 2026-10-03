@@ -111,8 +111,7 @@ def search_projects():
 
     filtered_projects = featured_projects
 
-    if search_query:
-
+    if search_query: 
         filtered_projects = [
 
             project

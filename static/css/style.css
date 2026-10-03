@@ -1102,154 +1102,26 @@ body.menu-open {
   margin-bottom: 0.5rem;
 }
 
-/* ==========================================================
-   REPORT PREVIEW MODAL
-========================================================== */
-
-.report-preview-modal {
-  position: fixed;
-
-  inset: 0;
-
-  z-index: 9999;
-
-  display: none;
-
-  align-items: center;
-
-  justify-content: center;
-
-  padding: 24px;
-}
-
-.report-preview-modal.is-open {
-  display: flex;
-}
-
-.report-preview-overlay {
-  position: absolute;
-
-  inset: 0;
-
-  background: rgba(15, 23, 42, 0.72);
-
-  backdrop-filter: blur(6px);
-}
-
-.report-preview-dialog {
-  position: relative;
-
-  z-index: 1;
-
-  width: min(1000px, 100%);
-
-  max-height: 90vh;
-
-  overflow-y: auto;
-
-  padding: 32px;
-
-  background: #ffffff;
-
-  border-radius: 24px;
-
-  box-shadow: 0 30px 80px rgba(15, 23, 42, 0.25);
-}
-
-.report-preview-close {
-  position: absolute;
-
-  top: 18px;
-
-  right: 18px;
-
-  width: 42px;
-
-  height: 42px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  border: 1px solid var(--border);
-
-  border-radius: 50%;
-
-  background: #ffffff;
-
-  color: var(--text);
-
-  font-size: 26px;
-
-  line-height: 1;
-
-  cursor: pointer;
-}
-
 .report-preview-header {
+  padding-left: 14px;
   padding-right: 54px;
-
-  margin-bottom: 28px;
-}
-
-.report-preview-label {
-  display: block;
-
-  margin-bottom: 8px;
-
-  color: var(--primary);
-
-  font-size: 12px;
-
-  font-weight: 700;
-
-  letter-spacing: 0.08em;
 }
 
 .report-preview-header h2 {
-  margin: 0 0 8px;
-
-  font-family: "Manrope", sans-serif;
-
-  font-size: 28px;
+  font-size: 17px;
 }
 
-.report-preview-header p {
-  margin: 0;
+.report-preview-gallery {
+  padding: 6px;
 
-  color: var(--muted);
+  gap: 7px;
 }
 
-.report-preview-pages {
-  display: grid;
+.report-preview-thumbnail {
+  flex-basis: 52px;
 
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-
-  gap: 20px;
-}
-
-.report-preview-page {
-  overflow: hidden;
-
-  border: 1px solid var(--border);
-
-  border-radius: 16px;
-
-  background: #f8fafc;
-}
-
-.report-preview-page img {
-  display: block;
-
-  width: 100%;
-
-  height: auto;
-}
-
-body.preview-modal-open {
-  overflow: hidden;
+  width: 52px;
+  height: 68px;
 }
 
 /* ==========================
@@ -2784,6 +2656,23 @@ DISCOVER SECTION
 }
 
 /* ==========================================================
+   PROJECT RESULTS COUNT
+========================================================== */
+
+.results-count {
+  position: relative;
+  z-index: 10;
+  margin-bottom: 18px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b7280;
+}
+.projects-grid {
+  position: relative;
+  z-index: 1;
+}
+
+/* ==========================================================
    PROJECT FILTER BAR — TABLET
 ========================================================== */
 
@@ -3215,24 +3104,6 @@ DISCOVER SECTION
     border-radius: 10px;
   }
 
-  .report-preview-modal {
-    padding: 12px;
-  }
-
-  .report-preview-dialog {
-    max-height: 94vh;
-
-    padding: 22px;
-
-    border-radius: 20px;
-  }
-
-  .report-preview-pages {
-    grid-template-columns: 1fr;
-
-    gap: 14px;
-  }
-
   .report-preview-header h2 {
     font-size: 21px;
   }
@@ -3252,6 +3123,105 @@ DISCOVER SECTION
   .preview-card .preview-button {
     margin-top: 18px;
   }
+
+  .report-preview-main img {
+    border-radius: 6px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .report-preview-modal {
+    padding: 0;
+  }
+
+  .report-preview-dialog {
+    width: 100%;
+    height: 100vh;
+
+    max-height: 100vh;
+
+    border-radius: 0;
+
+    border: 0;
+  }
+
+  .report-preview-header {
+    padding: 17px 58px 14px 16px;
+  }
+
+  .report-preview-label {
+    font-size: 10px;
+
+    margin-bottom: 5px;
+  }
+
+  .report-preview-header h2 {
+    font-size: 18px;
+
+    margin-bottom: 5px;
+  }
+
+  .report-preview-header p {
+    font-size: 12px;
+  }
+
+  .report-preview-close {
+    top: 13px;
+    right: 13px;
+
+    width: 38px;
+    height: 38px;
+
+    font-size: 23px;
+  }
+
+  .report-preview-gallery {
+    flex: 1;
+
+    min-height: 0;
+
+    padding: 8px;
+
+    gap: 9px;
+  }
+
+  .report-preview-main {
+    flex: 1;
+
+    min-height: 0;
+
+    padding: 5px;
+
+    border-radius: 10px;
+  }
+
+  .report-preview-main img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+  }
+
+  .report-preview-thumbnails {
+    flex: 0 0 auto;
+
+    gap: 8px;
+
+    padding-bottom: 4px;
+  }
+
+  .report-preview-thumbnail {
+    flex: 0 0 58px;
+
+    width: 58px;
+    height: 76px;
+
+    border-radius: 8px;
+  }
 }
 
 @media (max-width: 640px) {
@@ -3266,5 +3236,50 @@ DISCOVER SECTION
   .filter-group select {
     width: 100%;
     min-width: 100%;
+  }
+}
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 480px) {
+  .report-preview-main {
+    height: 52vh;
+
+    min-height: 300px;
+
+    padding: 8px;
+  }
+
+  .report-preview-thumbnail {
+    flex-basis: 56px;
+
+    width: 56px;
+    height: 74px;
+  }
+}
+
+@media (max-width: 380px) {
+  .report-preview-header {
+    padding-left: 14px;
+    padding-right: 54px;
+  }
+
+  .report-preview-header h2 {
+    font-size: 17px;
+  }
+
+  .report-preview-gallery {
+    padding: 6px;
+
+    gap: 7px;
+  }
+
+  .report-preview-thumbnail {
+    flex-basis: 52px;
+
+    width: 52px;
+    height: 68px;
   }
 }
