@@ -304,31 +304,47 @@ def all_projects():
 
         search_lower = search.lower()
 
-        projects = [
+        ranked_projects = []
 
-            project
+        for project in projects:
 
-            for project in projects
+            title = project.get("title", "").lower()
+            department_name = project.get("department", "").lower()
+            category_name = project.get("category", "").lower()
+            technology_names = [
+                item.lower()
+                for item in project.get("technology", [])
+            ]
 
-            if (
+            score = 0
 
-                search_lower in project.get("title", "").lower()
+            if search_lower in title:
+                score += 100
+                if title.startswith(search_lower):
+                    score += 40
 
-                or search_lower in project.get("department", "").lower()
+            if search_lower in department_name:
+                score += 50
 
-                or search_lower in project.get("category", "").lower()
+            if search_lower in category_name:
+                score += 40
 
-                or any(
+            if any(search_lower in item for item in technology_names):
+                score += 30
 
-                    search_lower in technology_name.lower()
+            if score:
+                ranked_projects.append((score, project))
 
-                    for technology_name
-                    in project.get("technology", [])
-
-                )
-
+        ranked_projects.sort(
+            key=lambda item: (
+                -item[0],
+                item[1].get("title", "").lower()
             )
+        )
 
+        projects = [
+            project
+            for _, project in ranked_projects
         ]
 
 
