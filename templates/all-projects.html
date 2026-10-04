@@ -17,82 +17,52 @@ Browse All Projects
             <div class="projects-result-summary">
 
                 <div class="projects-count">
-
                     {{ total_projects }}
-
                     Project{% if total_projects != 1 %}s{% endif %}
-
                 </div>
-
 
                 {% if current_search or current_department or current_category or current_technology or current_price %}
 
                 <div class="active-filters">
 
                     {% if current_search %}
-
                     <span class="active-filter">
-
                         Search: "{{ current_search }}"
-
                     </span>
-
                     {% endif %}
-
 
                     {% if current_department %}
-
                     <span class="active-filter">
-
                         {{ current_department }}
-
                     </span>
-
                     {% endif %}
-
 
                     {% if current_category %}
-
                     <span class="active-filter">
-
                         {{ current_category }}
-
                     </span>
-
                     {% endif %}
-
 
                     {% if current_technology %}
-
                     <span class="active-filter">
-
                         {{ current_technology }}
-
                     </span>
-
                     {% endif %}
 
-
                     {% if current_price %}
-
                     <span class="active-filter">
 
                         {% if current_price == "under_10000" %}
-
                         Under ₦10,000
 
                         {% elif current_price == "10000_20000" %}
-
                         ₦10,000 – ₦20,000
 
                         {% elif current_price == "above_20000" %}
-
                         Above ₦20,000
-
                         {% endif %}
 
                     </span>
-
                     {% endif %}
 
                 </div>
@@ -105,19 +75,6 @@ Browse All Projects
 
         {% if featured_projects %}
 
-        <div class="results-count">
-
-            {% if featured_projects|length == 1 %}
-
-            1 Project Found
-
-            {% else %}
-
-            {{ featured_projects|length }} Projects Found
-
-            {% endif %}
-
-        </div>
 
         <div class="projects-grid">
 
