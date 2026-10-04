@@ -1,9 +1,9 @@
-from flask import Flask, render_template, request, abort, jsonify
+from flask import Flask, render_template, request, abort, jsonify, redirect, url_for
 from config import Config
 from data import featured_projects, project_catalog
 
 WHATSAPP_NUMBER = "2348143467785"
-PROJECTS_PER_PAGE = 2
+PROJECTS_PER_PAGE = 8
 
 departments_data = [
 
@@ -109,48 +109,11 @@ def search_projects():
 
     search_query = request.args.get("search", "").strip()
 
-    filtered_projects = project_catalog
+    if not search_query:
+        return redirect(url_for("all_projects"))
 
-    if search_query: 
-        filtered_projects = [
+    return redirect(url_for("all_projects", search=search_query))
 
-            project
-
-            for project in project_catalog
-
-            if (
-
-                search_query.lower() in project["title"].lower()
-
-                or search_query.lower() in project["department"].lower()
-
-                or search_query.lower() in project["category"].lower()
-
-                or any(
-
-                    search_query.lower() in technology.lower()
-
-                    for technology in project["technology"]
-
-                )
-
-            )
-
-        ]
-
-    return render_template(
-
-        "project-results.html",
-
-        featured_projects=filtered_projects,
-
-        search_query=search_query,
-
-        page_title="Search Results",
-
-        whatsapp_number=WHATSAPP_NUMBER
-
-    )
 
 @app.route("/departments")
 def departments():
@@ -231,49 +194,24 @@ def departments():
 def department_projects(department_slug):
 
     department = next(
-
         (
             dept
-
             for dept in departments_data
-
             if dept["slug"] == department_slug
-
         ),
-
         None
-
     )
 
     if not department:
-
         abort(404)
 
-    filtered_projects = [
-
-        project
-
-        for project in featured_projects
-
-        if project["department"] == department["name"]
-
-    ]
-
-    return render_template(
-
-        "project-results.html",
-
-        featured_projects=filtered_projects,
-
-        page_title=department["name"],
-
-        page_description=f"Showing {len(filtered_projects)} project(s) from the {department['name']} department.",
-
-        search_query="",
-
-        whatsapp_number=WHATSAPP_NUMBER
-
+    return redirect(
+        url_for(
+            "all_projects",
+            department=department["name"]
+        )
     )
+
 
 @app.route("/projects/<slug>")
 def project_details(slug):
@@ -665,42 +603,66 @@ def search_api():
     if not query:
         return jsonify([])
 
-    query = query[:100]  # Limit query length to 100 characters
+    query = query[:100]
 
     try:
-
-        results = []
+        ranked_results = []
 
         for project in project_catalog:
 
-            technologies = " ".join(project.get("technology", []))
+            title = project.get("title", "").lower()
+            department = project.get("department", "").lower()
+            category = project.get("category", "").lower()
+            technologies = [
+                item.lower()
+                for item in project.get("technology", [])
+            ]
+            description = project.get("description", "").lower()
 
-            searchable = " ".join([
-                project.get("title", ""),
-                project.get("department", ""),
-                project.get("category", ""),
-                technologies,
-                project.get("description", "")
-            ]).lower()
+            score = 0
 
-            if query in searchable:
+            if query in title:
+                score += 100
+                if title.startswith(query):
+                    score += 40
 
-                results.append({
+            if query in department:
+                score += 50
 
-                    "title": project["title"],
-                    "department": project["department"],
-                    "technology": ", ".join(project.get("technology", [])[:2]),
-                    "slug": project["slug"]
+            if query in category:
+                score += 40
 
-                })
+            if any(query in technology for technology in technologies):
+                score += 30
 
-        return jsonify(results[:5])  # Limit to top 5 results
+            if query in description:
+                score += 10
+
+            if score:
+                ranked_results.append((score, project))
+
+        ranked_results.sort(
+            key=lambda item: (
+                -item[0],
+                item[1].get("title", "").lower()
+            )
+        )
+
+        return jsonify([
+            {
+                "title": project["title"],
+                "department": project["department"],
+                "technology": ", ".join(
+                    project.get("technology", [])[:2]
+                ),
+                "slug": project["slug"]
+            }
+            for _, project in ranked_results[:5]
+        ])
 
     except Exception:
         app.logger.exception("Search API error")
         return jsonify({
             "error": "Search is temporarily unavailable."
         }), 500
-
-if __name__ == "__main__":
-    app.run(port=5000, host="0.0.0.0", debug=True)
+)
