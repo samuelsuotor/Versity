@@ -1,0 +1,210 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}
+Departments | Versity
+{% endblock %}
+
+{% block content %}
+
+<section class="departments-page">
+
+    <div class="container">
+
+
+        <!-- ==========================================
+             SEARCH
+        =========================================== -->
+
+        <section class="departments-directory">
+
+            <div class="departments-directory-header">
+
+                <div>
+
+                    <span class="directory-eyebrow">
+                        Department directory
+                    </span>
+
+                    <h2>
+                        Browse all departments
+                    </h2>
+
+                    <p>
+                        Search for a department or browse the available
+                        academic disciplines below.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <form class="department-search" method="GET" action="{{ url_for('departments') }}">
+
+                <div class="department-search-input">
+
+                    <span>
+                        🔍
+                    </span>
+
+                    <input type="text" name="search" value="{{ search_query }}" placeholder="Search departments..."
+                        autocomplete="off">
+
+                </div>
+
+                <button type="submit">
+                    Search
+                </button>
+
+                {% if search_query %}
+
+                <a href="{{ url_for('departments') }}" class="department-clear-search">
+                    Clear
+                </a>
+
+                {% endif %}
+
+            </form>
+
+
+            <!-- ==========================================
+                 SEARCH RESULT MESSAGE
+            =========================================== -->
+
+            {% if search_query %}
+
+            <div class="department-search-result">
+
+                <p>
+
+                    Showing results for
+                    <strong>"{{ search_query }}"</strong>
+
+                </p>
+
+            </div>
+
+            {% endif %}
+
+
+            <!-- ==========================================
+                 DEPARTMENT GRID
+            =========================================== -->
+
+            {% if departments %}
+
+            <div class="departments-directory-grid">
+
+                {% for department in departments %}
+
+                <a href="{{ url_for('department_projects', department_slug=department.slug) }}"
+                    class="department-directory-card">
+
+                    <div class="department-directory-card-top">
+
+                        <div class="department-directory-icon">
+                            {{ department.icon }}
+                        </div>
+
+                        <span class="department-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+
+                    <div class="department-directory-content">
+
+                        <h3>
+                            {{ department.name }}
+                        </h3>
+
+                    </div>
+
+
+                    <div class="department-directory-footer">
+
+                        <span>
+                            {{ department.projects }}
+                            Project{% if department.projects != 1 %}s{% endif %}
+                        </span>
+
+                        <span>
+                            Explore
+                        </span>
+
+                    </div>
+
+                </a>
+
+                {% endfor %}
+
+            </div>
+
+            {% else %}
+
+            <!-- ==========================================
+                 EMPTY SEARCH STATE
+            =========================================== -->
+
+            <div class="departments-empty-state">
+
+                <div class="departments-empty-icon">
+                    🔎
+                </div>
+
+                <h3>
+                    No departments found
+                </h3>
+
+                <p>
+                    We couldn't find a department matching
+                    "{{ search_query }}".
+                    Try another search term.
+                </p>
+
+                <a href="{{ url_for('departments') }}" class="primary-btn">
+                    View All Departments
+                </a>
+
+            </div>
+
+            {% endif %}
+
+        </section>
+
+
+        <!-- ==========================================
+             BOTTOM CTA
+        =========================================== -->
+
+        <section class="departments-cta">
+
+            <div>
+
+                <span class="departments-cta-label">
+                    Can't find your department?
+                </span>
+
+                <h2>
+                    Browse all available projects instead.
+                </h2>
+
+                <p>
+                    Explore the complete Versity project marketplace
+                    and discover projects across different disciplines.
+                </p>
+
+            </div>
+
+            <a href="{{ url_for('all_projects') }}" class="primary-btn">
+                Browse Projects →
+            </a>
+
+        </section>
+
+    </div>
+
+</section>
+
+{% endblock %}

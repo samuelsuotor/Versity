@@ -130,19 +130,19 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-const backButton = document.getElementById("backButton");
+//const backButton = document.getElementById("backButton");
 
-if (backButton) {
-  backButton.addEventListener("click", (event) => {
-    event.preventDefault();
+//if (backButton) {
+//backButton.addEventListener("click", (event) => {
+//event.preventDefault();
 
-    if (window.history.length > 1) {
-      window.history.back();
-    } else {
-      window.location.href = "/";
-    }
-  });
-}
+//if (window.history.length > 1) {
+//window.history.back();
+//} else {
+//window.location.href = "/";
+//}
+//});
+//}
 
 // ==========================================
 //          Report Preview Modal
@@ -151,49 +151,73 @@ if (backButton) {
 let previewTrigger = null;
 
 function openPreviewModal() {
-  function openPreviewModal() {
-    const modal = document.getElementById("reportPreviewModal");
+  const modal = document.getElementById("reportPreviewModal");
 
-    if (!modal) {
-      return;
-    }
-
-    previewTrigger = document.activeElement;
-
-    modal.removeAttribute("inert");
-    modal.setAttribute("aria-hidden", "false");
-    modal.classList.add("is-open");
-
-    document.body.classList.add("preview-modal-open");
-
-    const closeButton = modal.querySelector(".report-preview-close");
-
-    if (closeButton) {
-      closeButton.focus();
-    }
+  if (!modal) {
+    return;
   }
 
-  function closePreviewModal() {
-    const modal = document.getElementById("reportPreviewModal");
+  previewTrigger = document.activeElement;
 
-    if (!modal) {
-      return;
-    }
+  modal.removeAttribute("inert");
+  modal.setAttribute("aria-hidden", "false");
+  modal.classList.add("is-open");
 
-    if (modal.contains(document.activeElement)) {
-      document.activeElement.blur();
-    }
+  document.body.classList.add("preview-modal-open");
 
-    modal.classList.remove("is-open");
-    modal.setAttribute("aria-hidden", "true");
-    modal.setAttribute("inert", "");
+  const closeButton = modal.querySelector(".report-preview-close");
 
-    document.body.classList.remove("preview-modal-open");
-
-    if (previewTrigger && typeof previewTrigger.focus === "function") {
-      previewTrigger.focus();
-    }
-
-    previewTrigger = null;
+  if (closeButton) {
+    closeButton.focus();
   }
 }
+
+function closePreviewModal() {
+  const modal = document.getElementById("reportPreviewModal");
+
+  if (!modal) {
+    return;
+  }
+
+  modal.classList.remove("is-open");
+  modal.setAttribute("aria-hidden", "true");
+  modal.setAttribute("inert", "");
+
+  document.body.classList.remove("preview-modal-open");
+
+  if (previewTrigger && typeof previewTrigger.focus === "function") {
+    previewTrigger.focus();
+  }
+
+  previewTrigger = null;
+}
+
+function changeReportPreview(button) {
+  const mainImage = document.getElementById("reportPreviewMainImage");
+
+  if (!mainImage || !button) {
+    return;
+  }
+
+  const imageSrc = button.dataset.image;
+
+  if (!imageSrc) {
+    return;
+  }
+
+  mainImage.src = imageSrc;
+
+  document
+    .querySelectorAll(".report-preview-thumbnail")
+    .forEach((thumbnail) => {
+      thumbnail.classList.remove("active");
+    });
+
+  button.classList.add("active");
+}
+
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape") {
+    closePreviewModal();
+  }
+});

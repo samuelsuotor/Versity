@@ -1040,6 +1040,133 @@ body.menu-open {
   Project Report Preview
 =========================================*/
 
+/* =========================================
+   REPORT PREVIEW MODAL — BASE
+   ========================================= */
+
+.report-preview-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.report-preview-modal.is-open {
+  display: flex;
+}
+
+.report-preview-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.72);
+  backdrop-filter: blur(6px);
+}
+
+.report-preview-dialog {
+  position: relative;
+  z-index: 1;
+  width: min(1000px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 32px;
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 24px 80px rgba(15, 23, 42, 0.28);
+}
+
+.report-preview-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 50%;
+  background: #f1f5f9;
+  color: #0f172a;
+  cursor: pointer;
+}
+
+.report-preview-header {
+  padding-right: 54px;
+  margin-bottom: 28px;
+}
+
+.report-preview-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.report-preview-main {
+  width: 100%;
+  height: 60vh;
+  min-height: 360px;
+  max-height: 600px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+.report-preview-main img {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.report-preview-thumbnails {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 2px 2px 6px;
+}
+
+.report-preview-thumbnail {
+  flex: 0 0 72px;
+  width: 72px;
+  height: 92px;
+  padding: 0;
+  overflow: hidden;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  background: #f8fafc;
+  cursor: pointer;
+  opacity: 0.72;
+}
+
+.report-preview-thumbnail img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.report-preview-thumbnail:hover,
+.report-preview-thumbnail.active {
+  opacity: 1;
+  border-color: #2563eb;
+}
+
+body.preview-modal-open {
+  overflow: hidden;
+}
+
 .report-preview-section {
   margin: 0;
 }
@@ -1356,35 +1483,6 @@ body.menu-open {
   background: white;
 
   cursor: pointer;
-}
-
-/*=========================================
-            Global Back Button
-=========================================*/
-.back-navigation {
-  margin-bottom: 2rem;
-}
-
-.back-button {
-  display: inline-flex;
-
-  align-items: center;
-
-  gap: 0.4rem;
-
-  text-decoration: none;
-
-  color: var(--text);
-
-  font-weight: 600;
-
-  transition: 0.25s;
-}
-
-.back-button:hover {
-  color: var(--primary);
-
-  transform: translateX(-3px);
 }
 
 .project-header {
@@ -2016,7 +2114,7 @@ LIVE SEARCH
 .search-item {
   display: flex;
 
-  align-items: left;
+  align-items: flex-start;
 
   text-align: left;
 
@@ -2584,6 +2682,163 @@ DISCOVER SECTION
 }
 
 /* ==========================================================
+   PROJECT DETAILS — MARKETPLACE HEADER
+========================================================== */
+
+.project-detail-header {
+  max-width: 900px;
+  margin: 0 auto 54px;
+  text-align: center;
+}
+
+.project-detail-header-content {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.project-detail-header h1 {
+  font-family: "Manrope", sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4.2rem);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  margin: 0 0 20px;
+}
+
+.project-detail-header p {
+  max-width: 720px;
+  margin: 0 auto;
+  color: var(--muted);
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+.project-detail-header .project-hero-meta {
+  margin-top: 20px;
+}
+
+/* ==========================================================
+   PROJECT DETAILS — CARD HEADINGS
+========================================================== */
+
+.card-heading {
+  margin-bottom: 28px;
+}
+
+.card-eyebrow {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.card-heading h2 {
+  margin: 0;
+}
+
+/* ==========================================================
+   PROJECT DETAILS — PURCHASE CARD
+========================================================== */
+
+.purchase-card {
+  position: sticky;
+  top: 100px;
+}
+
+.purchase-card h2 {
+  margin-bottom: 12px;
+}
+
+.purchase-description {
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.purchase-price {
+  font-family: "Manrope", sans-serif;
+  font-size: 2.7rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--text);
+  margin: 28px 0;
+}
+
+.purchase-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 0 0 28px;
+  padding: 0;
+  list-style: none;
+}
+
+.purchase-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.purchase-list li span {
+  color: var(--primary);
+  font-weight: 800;
+}
+
+.purchase-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 54px;
+  padding: 0 22px;
+  border-radius: 14px;
+  background: var(--primary);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  transition: var(--transition);
+}
+
+.purchase-button:hover {
+  background: var(--primary-dark);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.purchase-note {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* ==========================================================
+   PROJECT DETAILS — TECHNOLOGY TAGS
+========================================================== */
+
+.technology-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.technology-tags span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 6px 11px;
+  border-radius: 999px;
+  background: #eff6ff;
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+/* ==========================================================
    PROJECT DETAILS — LAYOUT REFINEMENT
    Keep existing gallery, buttons and modal untouched.
 ========================================================== */
@@ -2673,8 +2928,460 @@ DISCOVER SECTION
 }
 
 /* ==========================================================
-   PROJECT FILTER BAR — TABLET
+                DEPARTMENTS DIRECTORY PAGE
 ========================================================== */
+
+.departments-page {
+  padding: 40px 0 100px;
+}
+
+.departments-eyebrow,
+.directory-eyebrow {
+  display: inline-block;
+
+  color: var(--primary);
+
+  font-size: 0.85rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+
+  margin-bottom: 18px;
+}
+
+/* ==========================================================
+   DIRECTORY HEADER
+========================================================== */
+
+.departments-directory {
+  padding-bottom: 20px;
+}
+
+.departments-directory-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: end;
+
+  margin-bottom: 30px;
+}
+
+.departments-directory-header h2 {
+  font-family: "Manrope";
+
+  font-size: 42px;
+
+  letter-spacing: -0.035em;
+
+  margin: 0 0 12px;
+}
+
+.departments-directory-header p {
+  color: var(--muted);
+
+  font-size: 17px;
+
+  margin: 0;
+
+  line-height: 1.7;
+}
+
+/* ==========================================================
+  DEPARTMENTS SEARCH
+========================================================== */
+
+.department-search {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin-bottom: 34px;
+}
+
+.department-search-input {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  flex: 1;
+
+  height: 58px;
+
+  padding: 0 18px;
+
+  background: white;
+
+  border: 1px solid var(--border);
+
+  border-radius: 14px;
+
+  transition: var(--transition);
+}
+
+.department-search-input:focus-within {
+  border-color: var(--primary);
+
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.08);
+}
+
+.department-search-input span {
+  font-size: 17px;
+
+  opacity: 0.65;
+}
+
+.department-search-input input {
+  width: 100%;
+
+  height: 100%;
+
+  border: none;
+
+  outline: none;
+
+  background: transparent;
+
+  color: var(--text);
+
+  font-family: inherit;
+
+  font-size: 16px;
+}
+
+.department-search-input input::placeholder {
+  color: #9ca3af;
+}
+
+.department-search button {
+  height: 58px;
+
+  padding: 0 28px;
+
+  border: none;
+
+  border-radius: 14px;
+
+  background: var(--primary);
+
+  color: white;
+
+  font-family: inherit;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: var(--transition);
+}
+
+.department-search button:hover {
+  background: var(--primary-dark);
+
+  transform: translateY(-1px);
+}
+
+.department-clear-search {
+  color: var(--muted);
+
+  font-weight: 600;
+
+  text-decoration: none;
+
+  white-space: nowrap;
+}
+
+.department-clear-search:hover {
+  color: var(--primary);
+}
+
+.department-search-result {
+  margin-bottom: 24px;
+
+  color: var(--muted);
+
+  font-size: 14px;
+}
+
+.department-search-result p {
+  margin: 0;
+}
+
+/* ==========================================================
+   DEPARTMENT GRID
+========================================================== */
+
+.departments-directory-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 22px;
+}
+
+.department-directory-card {
+  display: flex;
+
+  flex-direction: column;
+
+  min-height: 290px;
+
+  padding: 28px;
+
+  background: white;
+
+  border: 1px solid var(--border);
+
+  border-radius: 22px;
+
+  color: inherit;
+
+  text-decoration: none;
+
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.department-directory-card:hover {
+  transform: translateY(-5px);
+
+  border-color: rgba(37, 99, 235, 0.45);
+
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.09);
+}
+
+.department-directory-card-top {
+  display: flex;
+
+  align-items: flex-start;
+
+  justify-content: space-between;
+
+  margin-bottom: 34px;
+}
+
+.department-directory-icon {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 58px;
+
+  height: 58px;
+
+  border-radius: 16px;
+
+  background: #eff6ff;
+
+  font-size: 27px;
+}
+
+.department-arrow {
+  color: #94a3b8;
+
+  font-size: 22px;
+
+  transition: var(--transition);
+}
+
+.department-directory-card:hover .department-arrow {
+  color: var(--primary);
+
+  transform: translateX(4px);
+}
+
+.department-directory-content {
+  flex: 1;
+}
+
+.department-directory-content h3 {
+  font-family: "Manrope";
+
+  font-size: 21px;
+
+  line-height: 1.3;
+
+  margin: 0;
+}
+
+.department-directory-content p {
+  color: var(--muted);
+
+  font-size: 14px;
+
+  line-height: 1.7;
+
+  margin: 0;
+}
+
+.department-directory-footer {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 10px;
+
+  margin-top: 25px;
+
+  padding-top: 18px;
+
+  border-top: 1px solid var(--border);
+
+  color: var(--muted);
+
+  font-size: 13px;
+
+  font-weight: 600;
+}
+
+.department-directory-footer span:last-child {
+  color: var(--primary);
+}
+
+/* ==========================================================
+   DEPARTMENTS EMPTY STATE
+========================================================== */
+
+.departments-empty-state {
+  padding: 80px 30px;
+
+  text-align: center;
+
+  border: 1px dashed var(--border);
+
+  border-radius: 22px;
+
+  background: var(--surface);
+}
+
+.departments-empty-icon {
+  font-size: 38px;
+
+  margin-bottom: 18px;
+}
+
+.departments-empty-state h3 {
+  font-family: "Manrope";
+
+  font-size: 25px;
+
+  margin: 0 0 12px;
+}
+
+.departments-empty-state p {
+  max-width: 500px;
+
+  margin: 0 auto 25px;
+
+  color: var(--muted);
+
+  line-height: 1.7;
+}
+
+/* ==========================================================
+   DEPARTMENT BOTTOM CTA
+========================================================== */
+
+.departments-cta {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 40px;
+
+  margin-top: 100px;
+
+  padding: 50px;
+
+  border-radius: 26px;
+
+  background: #eff6ff;
+
+  border: 1px solid #dbeafe;
+}
+
+.departments-cta-label {
+  display: block;
+
+  margin-bottom: 10px;
+
+  color: var(--primary);
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.06em;
+}
+
+.departments-cta h2 {
+  font-family: "Manrope";
+
+  font-size: 30px;
+
+  line-height: 1.25;
+
+  margin: 0 0 12px;
+}
+
+.departments-cta p {
+  max-width: 650px;
+
+  margin: 0;
+
+  color: var(--muted);
+
+  line-height: 1.7;
+}
+
+.departments-cta .primary-btn {
+  flex-shrink: 0;
+}
+
+/* ==========================================================
+   HOMEPAGE DEPARTMENT DIRECTORY LINK
+========================================================== */
+
+.departments-view-all {
+  display: flex;
+
+  justify-content: center;
+
+  margin-top: 45px;
+}
+
+.departments-view-all .secondary-btn {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-decoration: none;
+}
+
+/*===============================================
+        ALL MEDIA QUERIES BELOW THIS POINT
+=================================================*/
 
 @media (max-width: 1100px) {
   .discover-filter-row {
@@ -2696,11 +3403,10 @@ DISCOVER SECTION
 
     justify-content: flex-end;
   }
+  .departments-directory-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
-
-/* ==============================================================
-                    TABLET LAYOUT/SCREENS 
-=============================================================== */
 
 @media (max-width: 992px) {
   .department-grid {
@@ -2709,10 +3415,6 @@ DISCOVER SECTION
     gap: 16px;
   }
 }
-
-/* ==============================================================
-      MAJOR LAYOUT CHANGES FOR SCREENS OF 900PX AND BELOW 
-=============================================================== */
 
 @media (max-width: 900px) {
   .nav-links,
@@ -2808,6 +3510,21 @@ DISCOVER SECTION
   .apply-filter-btn,
   .reset-filter-btn {
     flex: 1;
+  }
+  .departments-page {
+    padding-bottom: 70px;
+  }
+
+  .departments-directory-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .departments-cta {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    margin-top: 70px;
   }
 }
 
@@ -3127,11 +3844,68 @@ DISCOVER SECTION
   .report-preview-main img {
     border-radius: 6px;
   }
+  .project-detail-header {
+    margin-bottom: 40px;
+  }
+
+  .project-detail-header h1 {
+    font-size: 2.35rem;
+  }
+
+  .project-detail-header p {
+    font-size: 1rem;
+  }
+
+  .purchase-card {
+    position: static;
+  }
+
+  .purchase-price {
+    font-size: 2.3rem;
+  }
 }
 
-/* =========================================================
-   MOBILE
-   ========================================================= */
+@media (max-width: 650px) {
+  .departments-directory-header h2 {
+    font-size: 32px;
+  }
+
+  .department-search {
+    flex-wrap: wrap;
+  }
+
+  .department-search-input {
+    flex-basis: 100%;
+  }
+
+  .department-search button {
+    flex: 1;
+  }
+
+  .departments-directory-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .department-directory-card {
+    min-height: 260px;
+  }
+
+  .departments-cta {
+    padding: 32px;
+
+    border-radius: 20px;
+  }
+
+  .departments-cta h2 {
+    font-size: 25px;
+  }
+
+  .departments-cta .primary-btn {
+    width: 100%;
+
+    text-align: center;
+  }
+}
 
 @media (max-width: 600px) {
   .report-preview-modal {
@@ -3239,9 +4013,9 @@ DISCOVER SECTION
   }
 }
 
-/* =========================================================
-   SMALL PHONES
-   ========================================================= */
+/* ===========================
+         SMALL PHONES
+   ========================= */
 
 @media (max-width: 480px) {
   .report-preview-main {

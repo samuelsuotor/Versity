@@ -5,7 +5,7 @@ from data import featured_projects, project_catalog
 WHATSAPP_NUMBER = "2348143467785"
 PROJECTS_PER_PAGE = 2
 
-departments = [
+departments_data = [
 
         {
             "icon":"💻",
@@ -74,7 +74,7 @@ def home():
     
     departments_with_counts = []
 
-    for department in departments:
+    for department in departments_data:
 
         project_count = sum(
 
@@ -109,14 +109,14 @@ def search_projects():
 
     search_query = request.args.get("search", "").strip()
 
-    filtered_projects = featured_projects
+    filtered_projects = project_catalog
 
     if search_query: 
         filtered_projects = [
 
             project
 
-            for project in featured_projects
+            for project in project_catalog
 
             if (
 
@@ -152,6 +152,81 @@ def search_projects():
 
     )
 
+@app.route("/departments")
+def departments():
+
+    search_query = request.args.get("search", "").strip()
+
+    departments_with_counts = []
+
+    for department in departments_data:
+
+        project_count = sum(
+            1
+            for project in project_catalog
+            if project.get("department") == department["name"]
+        )
+
+        department_copy = department.copy()
+
+        department_copy["projects"] = project_count
+
+        departments_with_counts.append(department_copy)
+
+
+    # ==========================================
+    # SEARCH DEPARTMENTS
+    # ==========================================
+
+    if search_query:
+
+        search_lower = search_query.lower()
+
+        departments_with_counts = [
+
+            department
+            for department in departments_with_counts
+
+            if (
+                search_lower in department["name"].lower()
+                or search_lower in department.get(
+                    "description", ""
+                ).lower()
+            )
+
+        ]
+
+
+    total_department_projects = sum(
+        department["projects"]
+        for department in departments_with_counts
+    )
+
+
+    active_departments = sum(
+        1
+        for department in departments_with_counts
+        if department["projects"] > 0
+    )
+
+
+    return render_template(
+
+        "departments.html",
+
+        departments=departments_with_counts,
+
+        search_query=search_query,
+
+        total_department_projects=total_department_projects,
+
+        active_departments=active_departments,
+
+        whatsapp_number=WHATSAPP_NUMBER
+
+    )
+
+
 @app.route("/departments/<department_slug>")
 def department_projects(department_slug):
 
@@ -160,7 +235,7 @@ def department_projects(department_slug):
         (
             dept
 
-            for dept in departments
+            for dept in departments_data
 
             if dept["slug"] == department_slug
 
@@ -204,34 +279,31 @@ def department_projects(department_slug):
 def project_details(slug):
 
     project = next(
-
-        (p for p in featured_projects if p["slug"] == slug),
-
+        (p for p in project_catalog if p["slug"] == slug),
         None
-
     )
 
     if project is None:
         abort(404)
 
     related_projects = [
-
-        p for p in featured_projects
-
+        p for p in project_catalog
         if p["slug"] != project["slug"]
-
+        and p["department"] == project["department"]
     ][:4]
 
+    if len(related_projects) < 4:
+        related_projects = [
+            p for p in project_catalog
+            if p["slug"] != project["slug"]
+            and p not in related_projects
+        ][:4]
+
     return render_template(
-
         "project-details.html",
-
         project=project,
-
         related_projects=related_projects,
-
         whatsapp_number=WHATSAPP_NUMBER
-
     )
 
 @app.route("/projects")
@@ -593,32 +665,42 @@ def search_api():
     if not query:
         return jsonify([])
 
-    results = []
+    query = query[:100]  # Limit query length to 100 characters
 
-    for project in featured_projects:
+    try:
 
-        technologies = " ".join(project.get("technology", []))
+        results = []
 
-        searchable = " ".join([
-            project.get("title", ""),
-            project.get("department", ""),
-            project.get("category", ""),
-            technologies,
-            project.get("description", "")
-        ]).lower()
+        for project in project_catalog:
 
-        if query in searchable:
+            technologies = " ".join(project.get("technology", []))
 
-            results.append({
+            searchable = " ".join([
+                project.get("title", ""),
+                project.get("department", ""),
+                project.get("category", ""),
+                technologies,
+                project.get("description", "")
+            ]).lower()
 
-                "title": project["title"],
-                "department": project["department"],
-                "technology": ", ".join(project.get("technology", [])[:2]),
-                "slug": project["slug"]
+            if query in searchable:
 
-            })
+                results.append({
 
-    return jsonify(results[:5])  # Limit to top 5 results
+                    "title": project["title"],
+                    "department": project["department"],
+                    "technology": ", ".join(project.get("technology", [])[:2]),
+                    "slug": project["slug"]
+
+                })
+
+        return jsonify(results[:5])  # Limit to top 5 results
+
+    except Exception:
+        app.logger.exception("Search API error")
+        return jsonify({
+            "error": "Search is temporarily unavailable."
+        }), 500
 
 if __name__ == "__main__":
     app.run(port=5000, host="0.0.0.0", debug=True)

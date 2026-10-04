@@ -94,7 +94,7 @@ featured_projects = [
             "complaint-maintenance-1.webp",
             "complaint-maintenance-2.jpg",
             "complaint-maintenance-3.jpg",
-            "complaint-maintenance-4.jpg"
+            "complaint-maintenance-4.webp"
         ],
         "description": "A comprehensive system for tracking complaints and maintenance requests in real-time.",
         "features": [
@@ -224,6 +224,8 @@ for i in range(5, 25):
     base["id"] = i
 
     base["title"] = f"{base['title']} ({i})"
+
+    base["slug"] = f"{base['slug']}-{i}"
 
     demo_projects.append(base)
 

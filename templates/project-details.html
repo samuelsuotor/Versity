@@ -10,13 +10,11 @@
 
     <div class="container">
 
-        {% include "partials/back-button.html" %}
+        <!-- ================= PROJECT HEADER ================= -->
 
-        <!-- ================= HERO ================= -->
+        <header class="project-detail-header">
 
-        <header class="project-hero">
-
-            <div class="project-hero-content">
+            <div class="project-detail-header-content">
 
                 <span class="project-hero-label">
                     {{ project.category }}
@@ -24,7 +22,9 @@
 
                 <h1>{{ project.title }}</h1>
 
-                <p>{{ project.description }}</p>
+                <p>
+                    {{ project.description }}
+                </p>
 
                 <div class="project-hero-meta">
 
@@ -75,41 +75,65 @@
 
             <article class="card information-card">
 
-                <h2>Project Information</h2>
+                <div class="card-heading">
 
-                <div class="info-item">
+                    <span class="card-eyebrow">
+                        PROJECT DETAILS
+                    </span>
 
-                    <span>Department</span>
-
-                    <strong>{{ project.department }}</strong>
-
-                </div>
-
-                <div class="info-item">
-
-                    <span>Category</span>
-
-                    <strong>{{ project.category }}</strong>
+                    <h2>Project Information</h2>
 
                 </div>
 
                 <div class="info-item">
 
-                    <span>Status</span>
+                    <span class="info-label">
+                        Department
+                    </span>
 
-                    <strong>{{ project.status|title }}</strong>
+                    <strong>
+                        {{ project.department }}
+                    </strong>
 
                 </div>
 
                 <div class="info-item">
 
-                    <span>Technologies</span>
+                    <span class="info-label">
+                        Category
+                    </span>
+
+                    <strong>
+                        {{ project.category }}
+                    </strong>
+
+                </div>
+
+                <div class="info-item">
+
+                    <span class="info-label">
+                        Status
+                    </span>
+
+                    <strong>
+                        {{ project.status|title }}
+                    </strong>
+
+                </div>
+
+                <div class="info-item">
+
+                    <span class="info-label">
+                        Technologies
+                    </span>
 
                     <div class="technology-tags">
 
                         {% for tech in project.technology %}
 
-                        <span>{{ tech }}</span>
+                        <span>
+                            {{ tech }}
+                        </span>
 
                         {% endfor %}
 
@@ -121,7 +145,18 @@
 
             <aside class="card purchase-card">
 
-                <h2>Purchase Project</h2>
+                <span class="card-eyebrow">
+                    GET THIS PROJECT
+                </span>
+
+                <h2>
+                    Purchase Project
+                </h2>
+
+                <p class="purchase-description">
+                    Get the complete project package, including the source
+                    code and academic documentation.
+                </p>
 
                 <div class="purchase-price">
 
@@ -131,13 +166,25 @@
 
                 <ul class="purchase-list">
 
-                    <li>✔ Complete Source Code</li>
+                    <li>
+                        <span>✓</span>
+                        Complete Source Code
+                    </li>
 
-                    <li>✔ Chapter 1–5 Report</li>
+                    <li>
+                        <span>✓</span>
+                        Chapter 1–5 Report
+                    </li>
 
-                    <li>✔ Database Files</li>
+                    <li>
+                        <span>✓</span>
+                        Database Files
+                    </li>
 
-                    <li>✔ Installation Guide</li>
+                    <li>
+                        <span>✓</span>
+                        Installation Guide
+                    </li>
 
                 </ul>
 
@@ -151,6 +198,10 @@
                     rel="noopener noreferrer">
                     Purchase via WhatsApp
                 </a>
+
+                <p class="purchase-note">
+                    You will be connected with Versity to complete your purchase.
+                </p>
 
             </aside>
 

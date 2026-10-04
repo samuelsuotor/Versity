@@ -1,22 +1,19 @@
-<section class="departments">
+<section class="departments" id="departments">
 
     <div class="container">
 
         <div class="section-title">
 
             <h2>
-
                 Browse by Department
-
             </h2>
 
             <p>
-
                 Explore projects and software tailored to your academic discipline.
-
             </p>
 
         </div>
+
 
         <div class="department-grid">
 
@@ -24,69 +21,65 @@
 
             {% if department.projects > 0 %}
 
-            <a href="{{ url_for('department_projects', department_slug=department.slug) }}" class="department-card">
+            <a href="{{ url_for(
+                            'department_projects',
+                            department_slug=department.slug
+                        ) }}" class="department-card">
 
-                {% else %}
+                <div class="department-icon">
+                    {{ department.icon }}
+                </div>
 
-                <div class="department-card department-disabled">
+                <h3>
+                    {{ department.name }}
+                </h3>
 
-                    {% endif %}
+                <p>
+                    {{ department.projects }}
+                    Project{% if department.projects != 1 %}s{% endif %}
+                    Available
+                </p>
 
-                    <div class="department-icon">
-
-                        {{ department.icon }}
-
-                    </div>
-
-                    <h3>
-
-                        {{ department.name }}
-
-                    </h3>
-
-                    <p>
-
-                        {% if department.projects > 0 %}
-
-                        {{ department.projects }}
-
-                        Project{% if department.projects != 1 %}s{% endif %} Available
-
-                        {% else %}
-
-                        <span class="department-coming-soon">
-
-                            Coming Soon
-
-                        </span>
-
-                        {% endif %}
-
-                    </p>
-
-                    {% if department.projects > 0 %}
-
-                    <span class="department-link">
-
-                        Explore →
-
-                    </span>
-
-                    {% endif %}
-
-                    {% if department.projects > 0 %}
+                <span class="department-link">
+                    Explore →
+                </span>
 
             </a>
 
             {% else %}
 
+            <div class="department-card department-disabled">
+
+                <div class="department-icon">
+                    {{ department.icon }}
+                </div>
+
+                <h3>
+                    {{ department.name }}
+                </h3>
+
+                <p>
+                    <span class="department-coming-soon">
+                        Coming Soon
+                    </span>
+                </p>
+
+            </div>
+
+            {% endif %}
+
+            {% endfor %}
+
         </div>
 
-        {% endif %}
 
-        {% endfor %}
+        <div class="departments-view-all">
 
-    </div>
+            <a href="{{ url_for('departments') }}" class="secondary-btn">
+                View All Departments →
+            </a>
+
+        </div>
 
     </div>
 

@@ -1,36 +1,42 @@
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+  const input = document.querySelector(".hero-search input");
 
-    const input = document.querySelector(".hero-search input");
+  if (!input) return;
 
-    if (!input) return;
+  const form = input.closest(".hero-search");
 
-    const form = input.closest(".hero-search");
+  const dropdown = document.createElement("div");
 
-    const dropdown = document.createElement("div");
+  dropdown.className = "search-dropdown";
 
-    dropdown.className = "search-dropdown";
+  form.appendChild(dropdown);
 
-    form.appendChild(dropdown);
+  let timer;
+  let searchRequestId = 0;
 
-    let timer;
+  input.addEventListener("input", () => {
+    clearTimeout(timer);
 
-    input.addEventListener("input", () => {
+    const query = input.value.trim();
 
-        clearTimeout(timer);
+    if (query.length < 2) {
+      dropdown.style.display = "none";
 
-        const query = input.value.trim();
+      dropdown.innerHTML = "";
 
-        if(query.length < 2){
+      return;
+    }
 
-            dropdown.style.display = "none";
-
-            dropdown.innerHTML = "";
-
-            return;
-
-        }
-
-        dropdown.innerHTML = `
+    dropdown.innerHTML = `
 
         <div class="search-loading">
 
@@ -40,34 +46,51 @@ document.addEventListener("DOMContentLoaded", () => {
 
         `;
 
-        dropdown.style.display="block";
+    dropdown.style.display = "block";
 
-        timer = setTimeout(async ()=>{
+    const requestId = ++searchRequestId;
 
-            const response = await fetch(`/search-api?q=${encodeURIComponent(query)}`);
+    timer = setTimeout(async () => {
+      try {
+        const response = await fetch(
+          `/search-api?q=${encodeURIComponent(query)}`,
+        );
 
-            const results = await response.json();
+        if (!response.ok) {
+          throw new Error("Search request failed");
+        }
 
-            if(results.length===0){
+        const results = await response.json();
 
-                dropdown.innerHTML='<div class="search-empty">No projects found.</div>';
+        if (requestId !== searchRequestId) {
+          return;
+        }
 
-                dropdown.style.display='block';
+        if (!response.ok || !Array.isArray(results)) {
+          throw new Error("Search request failed");
+        }
 
-                return;
+        if (results.length === 0) {
+          dropdown.innerHTML =
+            '<div class="search-empty">No projects found.</div>';
 
-            }
+          dropdown.style.display = "block";
 
-            dropdown.innerHTML = results.map(project => {
+          return;
+        }
 
-                const regex = new RegExp(`(${query})`, "ig");
+        dropdown.innerHTML = results
+          .map((project) => {
+            const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+            const regex = new RegExp(`(${escapedQuery})`, "ig");
 
-                const highlightedTitle = project.title.replace(
-                    regex,
-                    "<mark>$1</mark>"
-                );
+            const safeTitle = escapeHtml(project.title);
+            const highlightedTitle = safeTitle.replace(
+              regex,
+              "<mark>$1</mark>",
+            );
 
-                return `
+            return `
 
             <a href="/projects/${project.slug}" class="search-item">
 
@@ -83,11 +106,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     <span>
 
-                    ${project.department}
-
+                    ${escapeHtml(project.department)}
                     •
-
-                    ${project.technology}
+                    ${escapeHtml(project.technology)}
 
                     </span>
 
@@ -96,10 +117,10 @@ document.addEventListener("DOMContentLoaded", () => {
             </a>
 
             `;
+          })
+          .join("");
 
-            }).join("");
-
-            dropdown.innerHTML += `
+        dropdown.innerHTML += `
 
             <a class="search-view-all"
 
@@ -111,20 +132,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
             `;
 
-            dropdown.style.display="block";
+        dropdown.style.display = "block";
+      } catch (error) {
+        console.error("Search error:", error);
 
-        },250);
+        dropdown.innerHTML =
+          '<div class="search-empty">Unable to search right now. Please try again.</div>';
 
-    });
+        dropdown.style.display = "block";
+      }
+    }, 250);
+  });
 
-    document.addEventListener("click",(e)=>{
-
-        if(!form.contains(e.target)){
-
-            dropdown.style.display="none";
-
-        }
-
-    });
-
+  document.addEventListener("click", (e) => {
+    if (!form.contains(e.target)) {
+      dropdown.style.display = "none";
+    }
+  });
 });
